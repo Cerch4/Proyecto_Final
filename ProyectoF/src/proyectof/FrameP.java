@@ -15,7 +15,7 @@ public class FrameP extends JFrame{
     PanelP panel;
     
     FrameP(){
-        panel = new PanelP( 1 );
+        panel = new PanelP( 3 );
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
