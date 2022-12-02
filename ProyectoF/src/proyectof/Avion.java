@@ -19,10 +19,13 @@ public class Avion extends JPanel{
     private int y;
     private int escala;
     
+    
+    
     public Avion(int x, int y, int scale){
         this.x = x;
         this.y = y;
         this.escala = scale;
+        
     }
     
     public int getx(){
@@ -35,6 +38,7 @@ public class Avion extends JPanel{
     public int getescala(){
         return escala;
     }
+    
     
     public void changexy(int x1, int y1){
         x = x1;
@@ -59,10 +63,7 @@ public class Avion extends JPanel{
          g.fillOval(x+35, y-2, 25, 15);
          
         
-         
-         
             
-        //ImageIcon imagen = new ImageIcon(getClass().getResource("Target.png"));
-        //g.drawImage(imagen.getImage(), getx(), gety(), 3*getescala()/16, getescala()/4, this);
+        
      }
 }

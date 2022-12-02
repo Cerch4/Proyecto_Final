@@ -13,8 +13,8 @@ import javax.swing.JPanel;
  * @author Cesar
  */
 public class Misil extends JPanel{
-   private int x;
-    private int y;
+    public int x;
+    public int y;
     private int escala;
     
     public Misil(int x, int y, int scale){
@@ -29,6 +29,7 @@ public class Misil extends JPanel{
     public int gety(){
         return y;
     }
+    
     
     public int getescala(){
         return escala;

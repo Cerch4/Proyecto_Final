@@ -42,6 +42,8 @@ public class Target extends JPanel{
     
     @Override
      public void paint(Graphics g){
+         g.setColor(Color.black);
+         g.drawRoundRect(x, y, 40, 40, 60, 60);
          g.setColor(Color.lightGray);
          g.fillRoundRect(x, y, 40, 40, 60, 60);
         

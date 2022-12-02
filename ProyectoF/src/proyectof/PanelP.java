@@ -24,8 +24,9 @@ public class PanelP extends  JPanel implements ActionListener{
     Image backGround;
     Avion plane;
     Misil boom;
-    Timer timer;
-    ImageIcon temp, temp2;
+    Timer timer, timer2;
+    ImageIcon  temp2;
+    Boolean mState;
     
     int xVelocity;
 
@@ -37,24 +38,44 @@ public class PanelP extends  JPanel implements ActionListener{
     int planeVelocity = 2;
     
     public PanelP(int xVelocity){
+        mState = false;
         target = new Target(x,y,escala);
         plane = new Avion(planex, planey, escala);
-        boom = new Misil(planex+20,planey+20,escala);
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.white);
         
         temp2 = new ImageIcon(this.getClass().getResource("background.png"));
         backGround = temp2.getImage();
         timer = new Timer(20,this);
+        timer2 = new Timer(20,this);
         timer.start();
 
         this.xVelocity = xVelocity;
-       // this.yVelocity = yVelocity;
         
     }
     
-   
-   
+    public void misilLaunch(){
+        boom = new Misil(20+planex,planey+20,escala);
+        mState = true;
+    }
+    
+    public void startGame(){
+        timer.start();
+    } 
+    
+    public void stopGame(){
+        timer.stop();
+    }
+    public void checkColition(){
+        
+        if((boom.x+10 < x+40) && (boom.x+30 > x)){ //verifica colision horizontal
+            if((boom.y + 40 < y + 40) && (boom.y + 40 > y)){
+                
+               this.stopGame();
+        
+            }
+    }
+    }
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -64,7 +85,9 @@ public class PanelP extends  JPanel implements ActionListener{
         g2D.drawImage(backGround, 0, 0, this);
         target.paint(g2D);
         plane.paint(g2D);
-        boom.paint(g2D);
+        if(mState == true){
+            boom.paint(g2D);
+        }
     }
     
     @Override
@@ -72,16 +95,20 @@ public class PanelP extends  JPanel implements ActionListener{
         /*if(x>=PANEL_WIDTH-60 || x<0) {
 			xVelocity = xVelocity * -1;
 		} */
-        if(x<=PANEL_WIDTH-60) {
-		planex = planex + planeVelocity;
-		}
-        else{
-           planex = planex;
+        if(mState == true){
+            boom.y= boom.y+1;
+            this.checkColition();
+            planex = planex + planeVelocity;
         }
         
         
         
-        x = x + xVelocity;
+        if(mState == false){
+            x = x + xVelocity;
+            if(x<=PANEL_WIDTH-60) {
+		planex = planex + planeVelocity;
+		}
+        }
         /*if(xVelocity >0){
          planex = planex + planeVelocity-xVelocity;   
         }
@@ -92,10 +119,6 @@ public class PanelP extends  JPanel implements ActionListener{
         target.changexy(x,y);
         plane.changexy(planex, planey);
         repaint();
-       // if(y>=PANEL_HEIGHT-target.getHeight(null) || y<0) {
-	//		yVelocity = yVelocity * -1;}
-
-        // y = y + yVelocity;
          
        
     }
