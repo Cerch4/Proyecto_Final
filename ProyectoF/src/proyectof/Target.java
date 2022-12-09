@@ -14,8 +14,8 @@ import javax.swing.JPanel;
  * @author Cesar
  */
 public class Target extends JPanel{
-    private int x;
-    private int y;
+     int x;
+    int y;
     private int escala;
     
     public Target(int x, int y, int scale){

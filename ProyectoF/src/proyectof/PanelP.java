@@ -16,10 +16,10 @@ import static java.awt.Image.SCALE_SMOOTH;
  *
  * @author Cesar
  */
-public class PanelP extends  JPanel implements ActionListener{   
+public class PanelP extends JPanel implements MouseListener, ActionListener, MouseMotionListener {   
     
-    final int PANEL_WIDTH = 700;
-    final int PANEL_HEIGHT = 400;
+    public static int WIDTH = 700;
+    public static int HEIGHT = 400;
     Target target;
     Image backGround;
     Avion plane;
@@ -27,6 +27,7 @@ public class PanelP extends  JPanel implements ActionListener{
     Timer timer, timer2;
     ImageIcon  temp2;
     Boolean mState;
+    public Vector posicionMouse;
     
     int xVelocity;
 
@@ -41,9 +42,10 @@ public class PanelP extends  JPanel implements ActionListener{
         mState = false;
         target = new Target(x,y,escala);
         plane = new Avion(planex, planey, escala);
-        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.white);
-        
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
         temp2 = new ImageIcon(this.getClass().getResource("background.png"));
         backGround = temp2.getImage();
         timer = new Timer(20,this);
@@ -51,11 +53,12 @@ public class PanelP extends  JPanel implements ActionListener{
         timer.start();
 
         this.xVelocity = xVelocity;
+        posicionMouse = new Vector(0,0);
         
     }
     
     public void misilLaunch(){
-        boom = new Misil(20+planex,planey+20,escala);
+        boom = new Misil(20+planex,planey+20);
         mState = true;
     }
     
@@ -68,8 +71,8 @@ public class PanelP extends  JPanel implements ActionListener{
     }
     public void checkColition(){
         
-        if((boom.x+10 < x+40) && (boom.x+30 > x)){ //verifica colision horizontal
-            if((boom.y + 40 < y + 40) && (boom.y + 40 > y)){
+        if(((int)boom.x+10 < x+20) && ((int)boom.x+10 > x)){ //verifica colision horizontal
+            if(((int)boom.y + 10 < y + 40) && ((int)boom.y + 10 > y)){
                 
                this.stopGame();
         
@@ -89,12 +92,10 @@ public class PanelP extends  JPanel implements ActionListener{
             boom.paint(g2D);
         }
     }
-    
+    /*
     @Override
     public void actionPerformed(ActionEvent e){
-        /*if(x>=PANEL_WIDTH-60 || x<0) {
-			xVelocity = xVelocity * -1;
-		} */
+        
         if(mState == true){
             boom.y= boom.y+1;
             this.checkColition();
@@ -105,23 +106,82 @@ public class PanelP extends  JPanel implements ActionListener{
         
         if(mState == false){
             x = x + xVelocity;
-            if(x<=PANEL_WIDTH-60) {
+            if(x<=WIDTH-60) {
 		planex = planex + planeVelocity;
 		}
         }
-        /*if(xVelocity >0){
-         planex = planex + planeVelocity-xVelocity;   
-        }
-        else{
-         planex = planex + planeVelocity +xVelocity ;   
-        } */
+        
         
         target.changexy(x,y);
         plane.changexy(planex, planey);
         repaint();
          
        
-    }
+    } */
     
+    
+    public void mouseDragged(MouseEvent me) {
+        
+    }
+
+     public void mouseMoved(MouseEvent me) {
+        posicionMouse.x = me.getX();
+        posicionMouse.y = me.getY();
+    }
+
+    public void mouseClicked(MouseEvent me) {
+    }
+
+    public void mousePressed(MouseEvent me) {
+        
+    }
+
+    public void mouseReleased(MouseEvent me) {
+        
+    }
+
+    public void mouseEntered(MouseEvent me) {;
+    }
+
+    @Override
+    public void mouseExited(MouseEvent me) {;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        
+        if(mState == true){
+            boom.y= boom.y+1;
+            this.checkColition();
+            planex = planex + planeVelocity;
+            if(boom.checkearObjectivo((float)target.x, (float)target.y)){
+            boom.girar((float)target.x, (float)target.y);
+            
+            }
+           boom.mover(); 
+        }
+        
+        
+        
+        if(mState == false){
+            x = x + xVelocity;
+            if(x<=WIDTH-60) {
+		planex = planex + planeVelocity;
+		}
+        }
+        
+        
+        target.changexy(x,y);
+        plane.changexy(planex, planey);
+        
+        //System.out.println(m.checkearObjectivo(posicionMouse.x, posicionMouse.y));
+        /*if(boom.checkearObjectivo(posicionMouse.x, posicionMouse.y)){
+            boom.girar(posicionMouse.x, posicionMouse.y);
+            
+        }
+           boom.mover(); */
+        
+        repaint();
+    } 
     
 }
