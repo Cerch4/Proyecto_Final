@@ -76,9 +76,23 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
                 
                this.stopGame();
         
-            }
+            }}
     }
+    
+    public void goLEFT(){
+        if(xVelocity > 0){
+            xVelocity = xVelocity*-1;
+        }
     }
+    public void goRIGHT(){
+        if(xVelocity < 0){
+            xVelocity = xVelocity*-1;
+        }
+    }
+        
+        
+        
+    
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -152,6 +166,7 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
         
         if(mState == true){
             boom.y= boom.y+1;
+            x = x + xVelocity;
             this.checkColition();
             planex = planex + planeVelocity;
             if(boom.checkearObjectivo((float)target.x, (float)target.y)){

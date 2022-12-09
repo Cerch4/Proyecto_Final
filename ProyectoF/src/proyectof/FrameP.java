@@ -43,6 +43,12 @@ public class FrameP extends JFrame{
                     if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         panel.misilLaunch();
                     }
+                    if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                        panel.goLEFT();
+                    }
+                    if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                        panel.goRIGHT();
+                    }
                    
                 }
         });
