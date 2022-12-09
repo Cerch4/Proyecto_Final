@@ -15,11 +15,12 @@ import javax.swing.*;
 
  */
 public class FrameP extends JFrame{
-    PanelP panel;
+    MenuPanel panel;
     
     FrameP(){
-        panel = new PanelP( 3 );
         
+        panel = new MenuPanel(40, 2);
+        this.setSize(16*40, 9*40);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
         this.pack();

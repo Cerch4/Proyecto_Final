@@ -6,6 +6,7 @@ package proyectof;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -14,8 +15,8 @@ import javax.swing.JPanel;
  * @author Cesar
  */
 public class Target extends JPanel{
-    private int x;
-    private int y;
+    int x;
+    int y;
     private int escala;
     
     public Target(int x, int y, int scale){
@@ -42,14 +43,15 @@ public class Target extends JPanel{
     
     @Override
      public void paint(Graphics g){
-         g.setColor(Color.black);
-         g.drawRoundRect(x, y, 40, 40, 60, 60);
-         g.setColor(Color.lightGray);
-         g.fillRoundRect(x, y, 40, 40, 60, 60);
+         Graphics2D g2d = (Graphics2D)g;
+         g2d.setColor(Color.black);
+         g2d.drawRoundRect(x, y, 40, 40, 60, 60);
+         g2d.setColor(Color.lightGray);
+         g2d.fillRoundRect(x, y, 40, 40, 60, 60);
         
-         g.setColor(Color.darkGray);
-         g.fillRect(x, y+16, 40, 6);
-         g.fillRect(x+17, y, 6, 40);
+         g2d.setColor(Color.darkGray);
+         g2d.fillRect(x, y+16, 40, 6);
+         g2d.fillRect(x+17, y, 6, 40);
         //ImageIcon imagen = new ImageIcon(getClass().getResource("Target.png"));
         //g.drawImage(imagen.getImage(), getx(), gety(), 3*getescala()/16, getescala()/4, this);
      }

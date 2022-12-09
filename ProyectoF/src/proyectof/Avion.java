@@ -3,6 +3,7 @@ package proyectof;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 /*
@@ -21,10 +22,10 @@ public class Avion extends JPanel{
     
     
     
-    public Avion(int x, int y, int scale){
+    public Avion(int x, int y, int escale){
         this.x = x;
         this.y = y;
-        this.escala = scale;
+        this.escala = escale;
         
     }
     
@@ -47,20 +48,20 @@ public class Avion extends JPanel{
     
     @Override
      public void paint(Graphics g){
-         
-         g.setColor(Color.black);
-         g.drawOval(x+30, y+5, 16, 26);
-         g.drawOval(x-4, y-10, 16, 26);
-         g.setColor(Color.white);
-         g.fillRoundRect(x, y, 60, 20,30,20);
-         g.setColor(Color.white);
-         g.fillOval(x+30, y+5, 15, 25);
-         g.setColor(Color.black);
-         g.drawRoundRect(x, y, 61, 21,30,20);
-         g.setColor(Color.white);
-         g.fillOval(x-4, y-10, 15, 25);
-         g.setColor(Color.darkGray);
-         g.fillOval(x+35, y-2, 25, 15);
+         Graphics2D g2d = (Graphics2D)g;
+         g2d.setColor(Color.black);
+         g2d.drawOval(x+30, y+5, 16, 26);
+         g2d.drawOval(x-4, y-10, 16, 26);
+         g2d.setColor(Color.white);
+         g2d.fillRoundRect(x, y, 60, 20,30,20);
+         g2d.setColor(Color.white);
+         g2d.fillOval(x+30, y+5, 15, 25);
+         g2d.setColor(Color.black);
+         g2d.drawRoundRect(x, y, 61, 21,30,20);
+         g2d.setColor(Color.white);
+         g2d.fillOval(x-4, y-10, 15, 25);
+         g2d.setColor(Color.darkGray);
+         g2d.fillOval(x+35, y-2, 25, 15);
          
         
             
