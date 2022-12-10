@@ -12,7 +12,7 @@ public class ProyectoF {
 
 
     public static void main(String[] args) {
-        new FrameP();
+        new Ventana();
     }
     
 }

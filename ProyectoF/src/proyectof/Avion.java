@@ -50,18 +50,18 @@ public class Avion extends JPanel{
      public void paint(Graphics g){
          Graphics2D g2d = (Graphics2D)g;
          g2d.setColor(Color.black);
-         g2d.drawOval(x+30, y+5, 16, 26);
-         g2d.drawOval(x-4, y-10, 16, 26);
+         g2d.drawOval(x+30*escala/40, y+5*escala/40, 16*escala/40, 26*escala/40);
+         g2d.drawOval(x-4*escala/40, y-10*escala/40, 16*escala/40, 26*escala/40);
          g2d.setColor(Color.white);
-         g2d.fillRoundRect(x, y, 60, 20,30,20);
+         g2d.fillRoundRect(x, y, 60*escala/40, 20*escala/40,30*escala/40,20*escala/40);
          g2d.setColor(Color.white);
-         g2d.fillOval(x+30, y+5, 15, 25);
+         g2d.fillOval(x+30*escala/40, y+5*escala/40, 15*escala/40, 25*escala/40);
          g2d.setColor(Color.black);
-         g2d.drawRoundRect(x, y, 61, 21,30,20);
+         g2d.drawRoundRect(x, y, 61*escala/40, 21*escala/40,30*escala/40,20*escala/40);
          g2d.setColor(Color.white);
-         g2d.fillOval(x-4, y-10, 15, 25);
+         g2d.fillOval(x-4*escala/40, y-10*escala/40, 15*escala/40, 25*escala/40);
          g2d.setColor(Color.darkGray);
-         g2d.fillOval(x+35, y-2, 25, 15);
+         g2d.fillOval(x+35*escala/40, y-2*escala/40, 25*escala/40, 15*escala/40);
          
         
             

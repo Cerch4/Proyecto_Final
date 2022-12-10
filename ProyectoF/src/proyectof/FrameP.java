@@ -19,14 +19,13 @@ public class FrameP extends JFrame{
     JTextField YP,VP;
     JLabel YPT, VPT;
     JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi;
-    int escala;
+    static int escala;
     
     FrameP(){
         super();
-        escala = 40;
         panel = new MenuPanel(escala);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(16*escala, 12*escala));
+        this.setSize(new Dimension(16*escala+16, 12*escala)); // por alguna razon no se dimenciona 
         this.setTitle("Proyecto Final Tema 3");
         this.add(panel);
         this.crearGUI();
@@ -66,9 +65,10 @@ public class FrameP extends JFrame{
         SaveVP = new JButton("Guardar");SaveVP.setBounds(250*escala/40, 10*escala, 80*escala/40,15*escala/40);
         ChangeDi = new JButton("Cambiar Direccion");ChangeDi.setBounds(130*escala/40, 21*escala/2, 200*escala/40,15*escala/40);
         Start = new JButton("Start");Start.setBounds(360*escala/40, 19*escala/2, 80*escala/40,15*escala/40);
+        Reset = new JButton("Reset");Reset.setBounds(360*escala/40, 10*escala, 80*escala/40,15*escala/40);
         Stop = new JButton("Stop");Stop.setBounds(360*escala/40, 21*escala/2, 80*escala/40,15*escala/40);
-        evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_StartStop(Start);evento_StartStop(Stop);
-        this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);
+        evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);
+        this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);
     }
     public void evento_StartStop(JButton act){
         act.addActionListener(new ActionListener() {
@@ -76,6 +76,13 @@ public class FrameP extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (act.getBounds().y == 19*escala/2) {
                     panel.startGame();
+                }
+                if (act.getBounds().y == 10*escala) {
+                    panel.setvp(0);
+                    panel.setyp(40*escala/40);
+                    panel.setxp(30*escala/40);
+                    panel.setxt(0);
+                    panel.stopGame();
                 }
                 if (act.getBounds().y == 21*escala/2) {
                     panel.stopGame();

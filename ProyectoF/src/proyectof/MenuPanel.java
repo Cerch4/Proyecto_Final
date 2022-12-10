@@ -33,8 +33,12 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     }
     public void setvp(int vp){this.vp = vp;}
     public void setyp(int yp){this.yp = yp;}
+    public void setxp(int xp){this.xp = xp;}
+    public void setxt(int xt){this.xt = xt;}
     public int getyp(){return yp;}
     public int getvp(){return vp;}
+    public int getxp(){return xp;}
+    public int getxt(){return xt;}
     public void misilLaunch(){
         boom = new Misil(20+xp,yp+20);
         mState = true;
@@ -118,7 +122,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
 		xp = xp + vp;
             }
         }
-        if (xt>16*escala-40 || xt < 0) {
+        if (xt*escala/40>(16*escala)-(escala) || xt < 0) {
             vt = vt*-1;
         }
         if (xp>16*escala) {
