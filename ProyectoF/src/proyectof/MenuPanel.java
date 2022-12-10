@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.*;
 public class MenuPanel extends JPanel implements MouseListener, ActionListener, MouseMotionListener{
@@ -40,7 +41,9 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public int getxp(){return xp;}
     public int getxt(){return xt;}
     public void misilLaunch(){
-        boom = new Misil(20+xp,yp+20);
+        boom = new Misil(xp+20,yp-15);        
+        boom.angulo = (float) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x)) - (180);
+        boom.mover(); 
         mState = true;
     }
     public void startGame(){
@@ -51,8 +54,8 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
         timer.stop();
     }
     public void checkColition(){ 
-        if(((int)boom.x+10 < xt+20) && ((int)boom.x+10 > xt)){ //verifica colision horizontal
-            if(((int)boom.y + 10 < yt + 40) && ((int)boom.y + 10 > yt)){
+        if(((int)boom.x+10*escala/40 < xt*escala/40+20) && ((int)boom.x+10*escala/40 > xt*escala/40)){ //verifica colision horizontal
+            if(((int)boom.y + 10*escala/40 < yt + 40*escala/40) && ((int)boom.y + 10*escala/40 > yt)){
                this.stopGame();
             }
         }
@@ -74,6 +77,14 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
         g2D.drawImage(backGround, 0, 0, this);
         target.paint(g2D);
         plane.paint(g2D);
+        for(int k = yp-15; k<16*FrameP.escala; k = k+1){
+            double angle = (double) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x));
+            Point p = Angular.generaPunto((int)xp+20, (int)yp-15, k, -angle+180);
+            if(k%5 == 0){
+               g2D.fillRect(p.x-1, p.y-1, 2 , 2); 
+            }
+            
+        }
         if(mState == true){
             boom.paint(g2D);
         }
@@ -88,6 +99,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     }
 
     public void mouseClicked(MouseEvent me) {
+        this.misilLaunch();
     }
 
     public void mousePressed(MouseEvent me) {
@@ -107,14 +119,18 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(mState == true){
-            boom.y= boom.y+1;
-            xt = xt + vt;
-            this.checkColition();
-            xp = xp + vp;
-            if(boom.checkearObjectivo((float)target.x, (float)target.y)){
-                boom.girar((float)target.x, (float)target.y);
+            if(boom != null && boom.y >= 400*escala/40){
+                mState = false;
+            }else {
+                boom.y= boom.y+1;
+                this.checkColition();
+                xt = xt + vt;
+                xp = xp + vp;
+                if(boom.checkearObjectivo((float)target.x*escala/40, (float)target.y)){
+                    boom.girar((float)target.x*escala/40, (float)target.y);
+                }
+                boom.mover();  
             }
-            boom.mover(); 
         }
         if(mState == false){
             xt = xt + vt;
