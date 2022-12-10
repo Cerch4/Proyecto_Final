@@ -78,7 +78,9 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
     }
     /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
-        boom = new Misil(20+planex,planey+20);
+        boom = new Misil(planex+20,planey-15);
+        boom.angulo = (float) Math.toDegrees(Math.atan2(planey-15 - posicionMouse.y, planex+20 - posicionMouse.x)) - (180);
+        boom.mover(); 
         mState = true;
     }
     
@@ -128,6 +130,15 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
         g2D.drawImage(backGround, 0, 0, this);
         target.paint(g2D);
         plane.paint(g2D);
+        
+        for(int k = planey-15; k<600; k = k+1){
+            double angle = (double) Math.toDegrees(Math.atan2(planey-15 - posicionMouse.y, planex+20 - posicionMouse.x));
+            Point p = Angular.generaPunto((int)planex+20, (int)planey-15, k, -angle+180);
+            if(k%5 == 0){
+               g2D.fillRect(p.x-1, p.y-1, 2 , 2); 
+            }
+            
+        }
         if(mState == true){
             boom.paint(g2D);
         }
@@ -147,6 +158,7 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
 
     @Override
     public void mouseClicked(MouseEvent me) {
+        this.misilLaunch();
     }
 
     @Override
@@ -172,16 +184,23 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
     public void actionPerformed(ActionEvent ae) {
         
         if(mState == true){
-            boom.y= boom.y+1;
-            this.checkColition();
-            x = x + xVelocity;
-            planex = planex + planeVelocity;
-            if(boom.checkearObjectivo((float)target.x, (float)target.y)){
-            boom.girar((float)target.x, (float)target.y);
+            if(boom != null && boom.y >= 400){
+            mState = false;
             
             }
-           boom.mover(); 
+            else {
+               boom.y= boom.y+1;
+                this.checkColition();
+                x = x + xVelocity;
+                planex = planex + planeVelocity;
+                if(boom.checkearObjectivo((float)target.x, (float)target.y)){
+                boom.girar((float)target.x, (float)target.y);
+            
+                }
+            boom.mover();  
+            }
         }
+        
         
         
         

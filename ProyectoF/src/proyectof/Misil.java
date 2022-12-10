@@ -110,11 +110,11 @@ public class Misil {
         x += frente.x;
         y += frente.y;
         
-        if(x > PanelP.WIDTH) x -= PanelP.WIDTH;
-        if(x < 0) x += PanelP.WIDTH;
+        if(x > PanelP.WIDTH) x = -100;
+        if(x < 0) x = -100;
         
-        if(y > PanelP.HEIGHT) y -= PanelP.HEIGHT;
-        if(y < 0) y += PanelP.HEIGHT;
+        if(y > PanelP.HEIGHT) y = -100;
+        if(y < 0) y =-100;
     }
     
     /** Metodo paint del misil, dibuja un misil de un tamaño determinado por el parametro t, contenido dentro un circulo de tamaño determinado por el parametro radio
