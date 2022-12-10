@@ -10,14 +10,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- *
+ *Un sprite movil del objetivo usado en el proyecto
  * @author Cesar
  */
-public class Target extends JPanel{
-     int x;
+public class Target{
+    /** int que almacena la posicion horizontal de la clase */
+    int x;
+    /** int que almacena la posicion vertical de la clase*/
     int y;
     private int escala;
-    
+    /**Metodo constructor, asigna las coordenadas iniciales al objeto 
+     * @param x posicion inicial horizontal de target
+     * @param y posicion inicial vertical de target
+     */
     public Target(int x, int y, int scale){
         this.x = x;
         this.y = y;
@@ -34,13 +39,16 @@ public class Target extends JPanel{
     public int getescala(){
         return escala;
     }
-    
+    /**Metodo que cambia la posicion de target
+     * @param x1 nueva posicion en el eje horizontal
+     * @param y1 nueva posicion en el eje vertical
+     */
     public void changexy(int x1, int y1){
         x = x1;
         y= y1;
     }
     
-    @Override
+    /** Metodo que renderiza el objeto*/
      public void paint(Graphics g){
          g.setColor(Color.black);
          g.drawRoundRect(x, y, 40, 40, 60, 60);

@@ -1,5 +1,7 @@
 package proyectof;
 
+
+/**  */
 public class Vector{
     public float x,y;
     

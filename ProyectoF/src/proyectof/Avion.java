@@ -11,16 +11,22 @@ import javax.swing.JPanel;
  */
 
 /**
- *
- * @author Cesar
+ *Un sprite de avion para usar en el proyecto final
+ * @author Cesar Franco
+ * @author Sebastian
  */
-public class Avion extends JPanel{
+public class Avion {
+    /**int para almacenar la coordenada horizontal del avion */
     private int x;
+    /**int para almacenar la coordenada vertical del avion */
     private int y;
     private int escala;
     
     
-    
+    /** Metodo constructor, asigna los valores de la posicion inicial del avion
+     * @param x posicion inicial del avion en el eje horizontal
+     * @param y posicion inicial del avion en el eje y 
+     */
     public Avion(int x, int y, int scale){
         this.x = x;
         this.y = y;
@@ -39,13 +45,16 @@ public class Avion extends JPanel{
         return escala;
     }
     
-    
+    /**Cambia la posicion del avion
+     * @param x1 nueva posicion en el eje horizontal
+     * @param y1 nueva posicion en el eje vertical
+     */
     public void changexy(int x1, int y1){
         x = x1;
         y= y1;
     }
     
-    @Override
+    /**Metodo paint de avion*/
      public void paint(Graphics g){
          
          g.setColor(Color.black);

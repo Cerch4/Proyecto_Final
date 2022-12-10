@@ -11,27 +11,41 @@ import java.awt.Polygon;
 import javax.swing.JPanel;
 
 /**
- *
+ * Un sprite movil de un misil 2D 
  * @author Cesar
+ * @see Vector.java
+ * @see Angular.java
  */
 public class Misil {
     
-   /* public int x;
-    public int y;
-    private int escala; */
+    /**Floats que almacenan la posicion en horizontal y vertical del misil */
     float x, y;
-    float angulo = 43; // 0 - 360, sentido del reloj
+    /** Float que almacena el angulo en que se mueve el misil, en sentido horario*/
+    float angulo = 90; 
+    /** Float que almacena el radio de deteccion de objetos del misil*/
     float radio = 80;
+    /** Float que almacena la velocidad de giro del misil*/
     float velAngular = 5f;
-    float velocidad = 15f;
+    /** Float que almacena la velocidad de movimiento del misil */
+    float velocidad = 10f;
+    /** Float que la escala del tamaño del misil*/
     float t = 10f;
     
+    
+    /** Metodo constructor de la clase
+     * @param x posicion inicial horizontal del misil
+     * @param y posivion inicial vertical del misil
+     */
     public Misil(float x, float y){
         this.x = x;
         this.y = y;
         
     }
-    
+    /**Metodo que detecta si un punto esta en el rango de deteccion del Misil
+     * @param x coordenada en eje horizontal del punto a analizar
+     * @param y coordenada en eje vertical del punto a analizar
+     * @return true si el punto se encuentra dentro del radio de deteccion, false en caso contrario
+     */
     public boolean checkearObjectivo(float x, float y) {
         Vector dist = new Vector(x - this.x, y - this.y);
 
@@ -52,7 +66,10 @@ public class Misil {
         } // sino, descartar
         else return false;
     }
-    
+    /**Metodo que gira el misil en la direccion de un punto determinado en base a la diferencia de angulo entre el misil y el punto, y la velocidad angular  
+     * @param x coordenada en eje horizontal del punto al que se desea girar
+     * @param y coordenada en eje vertical del punto al que se desea girar
+     */
     public void girar(float x, float y) {
         Vector dist = new Vector(x - this.x, y - this.y);
 
@@ -85,6 +102,7 @@ public class Misil {
         }
     }
     
+    /**Metodo para mover el misil en base al angulo al que apunta y la velocidad de movimiento en el instante dado */
     public void mover(){
         Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
         frente.escalar(velocidad);
@@ -99,12 +117,9 @@ public class Misil {
         if(y < 0) y += PanelP.HEIGHT;
     }
     
-    
-    public void changexy(int x1, int y1){
-        x = x1;
-        y= y1;
-    }
-
+    /** Metodo paint del misil, dibuja un misil de un tamaño determinado por el parametro t, contenido dentro un circulo de tamaño determinado por el parametro radio
+     * @param g objeto de la clase Graphics que permite renderizar el objeto
+     */
      public void paint(Graphics g) {
         g.setColor(Color.black);
         g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);

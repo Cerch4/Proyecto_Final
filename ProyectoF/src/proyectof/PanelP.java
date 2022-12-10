@@ -13,31 +13,51 @@ import javax.swing.*;
 import java.awt.Image;
 import static java.awt.Image.SCALE_SMOOTH;
 /**
- *
+ * JPanel que anima las fisicas de lanzamiento de misiles desde un avion
+ * @see Avion
+ * @see Misil
+ * @see Target
  * @author Cesar
  */
 public class PanelP extends JPanel implements MouseListener, ActionListener, MouseMotionListener {   
-    
+    /** Int que almacena el ancho del panel */
     public static int WIDTH = 700;
+    /** Int que almacena el alto del panel */
     public static int HEIGHT = 400;
+    /** Target que almacena el blanco que se usara en la simulacion*/
     Target target;
+    /** Image que almacena el fondo que se usara en la simulacion*/
     Image backGround;
+    /** Almacena el Avion que se usara en la simulacion*/
     Avion plane;
+    /** Almacena el Misil que se usara en la simulacion*/
     Misil boom;
+    /** Timer que determinara la velocidad de ejecucion del programa*/
     Timer timer, timer2;
+    /** ImageIcon que almacena el png que se le asignara de fondo en la simulacion*/
     ImageIcon  temp2;
+    /** Boolean que almacena el estado del misil, true si el misil ha sido disparado*/
     Boolean mState;
+    /** Vector que almacena la posicion del mouse en la pantalla*/
     public Vector posicionMouse;
-    
+    /** Int que almacena la velocidad a la que se mueve el blanco*/
     int xVelocity;
-
+    /** Int que almacena la posicion del blanco en el eje horizontal*/
     int x = 0;
+    /** Int que almacena la posicion del blanco en el eje vertical*/
     int y = 320;
+    /** Int que almacena la posicion del avion en el eje horizontal*/
     int planex = 30;
+    /** Int que almacena la posicion del avion en el eje vertical*/
     int planey = 40;
+    
     int escala = 160;
+    /** Int que almacena la velocidad a la que se mueve el avion*/
     int planeVelocity = 2;
     
+    /** Metodo constructor de la clase
+     * @param xVelocity int que asigna velocidad al blanco
+     */
     public PanelP(int xVelocity){
         mState = false;
         target = new Target(x,y,escala);
@@ -56,19 +76,21 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
         posicionMouse = new Vector(0,0);
         
     }
-    
+    /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
         boom = new Misil(20+planex,planey+20);
         mState = true;
     }
     
+    /** Metodo que inicia el timer de ejecucion de la simulacion*/
     public void startGame(){
         timer.start();
     } 
-    
+    /** Metodo que detiene el timer de ejecucion de la simulacion*/
     public void stopGame(){
         timer.stop();
     }
+    /** Metodo que evalua la posicion del misil respecto al blanco, en casi de que esten en contacto detiene la simulacion*/
     public void checkColition(){
         
         if(((int)boom.x+10 < x+20) && ((int)boom.x+10 > x)){ //verifica colision horizontal
@@ -78,12 +100,14 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
         
             }}
     }
-    
+    /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la derecha cambia el valor de xVelocity, caso contrario no hace nada*/
     public void goLEFT(){
         if(xVelocity > 0){
             xVelocity = xVelocity*-1;
         }
     }
+    
+    /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la izquirda cambia el valor de xVelocity, caso contrario no hace nada*/
     public void goRIGHT(){
         if(xVelocity < 0){
             xVelocity = xVelocity*-1;
@@ -92,7 +116,9 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
         
         
         
-    
+    /** Metodo que renderiza el panel junto con todos sus componentes
+     * @param g objeto de la clase Graphics que permite renderizar el objeto 
+     */
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -106,68 +132,49 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
             boom.paint(g2D);
         }
     }
-    /*
+    
+    
     @Override
-    public void actionPerformed(ActionEvent e){
-        
-        if(mState == true){
-            boom.y= boom.y+1;
-            this.checkColition();
-            planex = planex + planeVelocity;
-        }
-        
-        
-        
-        if(mState == false){
-            x = x + xVelocity;
-            if(x<=WIDTH-60) {
-		planex = planex + planeVelocity;
-		}
-        }
-        
-        
-        target.changexy(x,y);
-        plane.changexy(planex, planey);
-        repaint();
-         
-       
-    } */
-    
-    
     public void mouseDragged(MouseEvent me) {
         
     }
 
+    @Override
      public void mouseMoved(MouseEvent me) {
         posicionMouse.x = me.getX();
         posicionMouse.y = me.getY();
     }
 
+    @Override
     public void mouseClicked(MouseEvent me) {
     }
 
+    @Override
     public void mousePressed(MouseEvent me) {
         
     }
 
+    @Override
     public void mouseReleased(MouseEvent me) {
         
     }
 
+    @Override
     public void mouseEntered(MouseEvent me) {;
     }
 
     @Override
     public void mouseExited(MouseEvent me) {;
     }
-
+    /** Metodo que detecta si se ha realizado una accion especifica, en este caso el paso del tiempo basado en el timer, cada vez que se ejecuta actualiza la posicion de todos los objetos del panel
+        al llamar al metodo repaint, */
     @Override
     public void actionPerformed(ActionEvent ae) {
         
         if(mState == true){
             boom.y= boom.y+1;
-            x = x + xVelocity;
             this.checkColition();
+            x = x + xVelocity;
             planex = planex + planeVelocity;
             if(boom.checkearObjectivo((float)target.x, (float)target.y)){
             boom.girar((float)target.x, (float)target.y);
