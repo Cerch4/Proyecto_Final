@@ -17,21 +17,24 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     Boolean mState;
     int xt,yt,xp,yp,vt,vp;
     public Vector posicionMouse;
-    public MenuPanel(int escala, int vp){
+    public MenuPanel(int escala){
         this.escala = escala;
-        xt = 0;yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vt = 3;this.vp = vp;
+        xt = 0;yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vt = 3;vp = 0;
         mState=false;
         target = new Target(xt,yt,escala);plane = new Avion(xp, yp, escala);
-        this.setPreferredSize(new Dimension(16*escala, 12*escala));
+        this.setBounds(0, 0, 16*escala, 9*escala);
         this.setBackground(Color.white);
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         temp2 = new ImageIcon(this.getClass().getResource("background.png"));
         backGround = new ImageIcon(temp2.getImage().getScaledInstance(16*escala, 9*escala, Image.SCALE_SMOOTH)).getImage();
         timer = new Timer(20, (ActionListener) this);
-        timer.start();
         posicionMouse = new Vector(0,0);
     }
+    public void setvp(int vp){this.vp = vp;}
+    public void setyp(int yp){this.yp = yp;}
+    public int getyp(){return yp;}
+    public int getvp(){return vp;}
     public void misilLaunch(){
         boom = new Misil(20+xp,yp+20);
         mState = true;
@@ -48,6 +51,16 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
             if(((int)boom.y + 10 < yt + 40) && ((int)boom.y + 10 > yt)){
                this.stopGame();
             }
+        }
+    }
+    public void goLEFT(){
+        if(vt > 0){
+            vt = vt*-1;
+        }
+    }
+    public void goRIGHT(){
+        if(vt < 0){
+            vt = vt*-1;
         }
     }
     @Override
@@ -91,12 +104,13 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public void actionPerformed(ActionEvent e) {
         if(mState == true){
             boom.y= boom.y+1;
+            xt = xt + vt;
             this.checkColition();
             xp = xp + vp;
             if(boom.checkearObjectivo((float)target.x, (float)target.y)){
                 boom.girar((float)target.x, (float)target.y);
             }
-           boom.mover(); 
+            boom.mover(); 
         }
         if(mState == false){
             xt = xt + vt;
@@ -109,6 +123,9 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
         }
         if (xp>16*escala) {
             xp = -60;
+        }
+        if (xp<-60) {
+            xp = 16*escala;
         }
         target.changexy(xt, yt);
         plane.changexy(xp, yp);

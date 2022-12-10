@@ -15,7 +15,7 @@ public class Ventana extends JFrame{
         escala = 160;
         Width = 4;
         Height = 3;
-        MP = new MenuPanel(escala, 2);
+        MP = new MenuPanel(escala);
         setSize(Width*escala, Height*escala);
         setTitle("Proyecto Final Tema 3");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,7 +40,7 @@ public class Ventana extends JFrame{
     }
     public void reziseV(int escala){
         this.escala = escala;
-        MP = new MenuPanel(escala, 2);
+        MP = new MenuPanel(escala);
         setSize(Width*escala, Height*escala);
         crearMenu();
     }

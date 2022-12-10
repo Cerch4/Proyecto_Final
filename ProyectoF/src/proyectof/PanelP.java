@@ -55,7 +55,7 @@ public class PanelP extends  JPanel implements ActionListener{
     }
     
     public void misilLaunch(){
-        boom = new Misil(20+planex,planey+20,escala);
+        boom = new Misil(20+planex,planey+20);
         mState = true;
     }
     
