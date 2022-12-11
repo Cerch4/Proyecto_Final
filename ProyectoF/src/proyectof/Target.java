@@ -18,6 +18,9 @@ public class Target{
     int x;
     /** int que almacena la posicion vertical de la clase*/
     int y;
+    int angulo =180;
+    
+    float radio = 20f;
     private int escala;
     /**Metodo constructor, asigna las coordenadas iniciales al objeto 
      * @param x posicion inicial horizontal de target
@@ -48,16 +51,40 @@ public class Target{
         y= y1;
     }
     
+    public boolean checkearObjectivo(float x, float y) {
+        Vector dist = new Vector(x - this.x, y - this.y);
+
+        // si el objetivo esta fuera del rango radial, descartar
+        float mag = dist.magnitud();
+        if (mag > radio+15f || mag < radio-15f) {
+            return false;
+        }
+
+        Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
+
+        dist.normalizar();
+        frente.normalizar();
+
+        // si el objetivo esta frente al misil, entonces retornar verdadero
+        if(Vector.dot(dist, frente) > 0f){
+            return true;
+        } // sino, descartar
+        else return false;
+    }
+    
     /** Metodo que renderiza el objeto*/
      public void paint(Graphics g){
-         g.setColor(Color.black);
-         g.drawRoundRect(x, y, 40, 40, 60, 60);
+        g.setColor(Color.black);
+        g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+         
+         g.drawRoundRect((int)(radio-x), (int)(radio-y), 40, 40, 60, 60);
          g.setColor(Color.lightGray);
-         g.fillRoundRect(x, y, 40, 40, 60, 60);
+         g.fillOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
         
          g.setColor(Color.darkGray);
-         g.fillRect(x, y+16, 40, 6);
-         g.fillRect(x+17, y, 6, 40);
+         g.fillRect((int)(x-radio), y-(int)(radio/6), (int)(radio*2), 5);
+         g.fillRect(x-(int)(radio/6), (int)(y-radio), 5, (int)(radio*2));
+    
         //ImageIcon imagen = new ImageIcon(getClass().getResource("Target.png"));
         //g.drawImage(imagen.getImage(), getx(), gety(), 3*getescala()/16, getescala()/4, this);
      }

@@ -45,7 +45,7 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
     /** Int que almacena la posicion del blanco en el eje horizontal*/
     int x = 0;
     /** Int que almacena la posicion del blanco en el eje vertical*/
-    int y = 320;
+    int y = 340;
     /** Int que almacena la posicion del avion en el eje horizontal*/
     int planex = 30;
     /** Int que almacena la posicion del avion en el eje vertical*/
@@ -95,12 +95,11 @@ public class PanelP extends JPanel implements MouseListener, ActionListener, Mou
     /** Metodo que evalua la posicion del misil respecto al blanco, en casi de que esten en contacto detiene la simulacion*/
     public void checkColition(){
         
-        if(((int)boom.x+10 < x+20) && ((int)boom.x+10 > x)){ //verifica colision horizontal
-            if(((int)boom.y + 10 < y + 40) && ((int)boom.y + 10 > y)){
-                
-               this.stopGame();
-        
-            }}
+       
+        if((target.checkearObjectivo(boom.x,boom.y)) == true){ //verifica colision horizontal
+            this.stopGame();
+        }
+    
     }
     /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la derecha cambia el valor de xVelocity, caso contrario no hace nada*/
     public void goLEFT(){

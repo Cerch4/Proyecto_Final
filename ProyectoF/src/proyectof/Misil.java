@@ -66,6 +66,28 @@ public class Misil {
         } // sino, descartar
         else return false;
     }
+    
+    public boolean checkearColicion(float x, float y) {
+        Vector dist = new Vector(x - this.x, y - this.y);
+
+        // si el objetivo esta fuera del rango radial, descartar
+        float mag = dist.magnitud();
+        if (mag > t*1.5) {
+            return false;
+        }
+
+        Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
+
+        dist.normalizar();
+        frente.normalizar();
+
+        // si el objetivo esta frente al misil, entonces retornar verdadero
+        if(Vector.dot(dist, frente) > 0f){
+            return true;
+        } // sino, descartar
+        else return false;
+    }
+    
     /**Metodo que gira el misil en la direccion de un punto determinado en base a la diferencia de angulo entre el misil y el punto, y la velocidad angular  
      * @param x coordenada en eje horizontal del punto al que se desea girar
      * @param y coordenada en eje vertical del punto al que se desea girar
