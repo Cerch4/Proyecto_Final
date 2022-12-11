@@ -54,10 +54,8 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
         timer.stop();
     }
     public void checkColition(){ 
-        if(((int)boom.x+10*escala/40 < xt*escala/40+20) && ((int)boom.x+10*escala/40 > xt*escala/40)){ //verifica colision horizontal
-            if(((int)boom.y + 10*escala/40 < yt + 40*escala/40) && ((int)boom.y + 10*escala/40 > yt)){
-               this.stopGame();
-            }
+        if((target.checkearObjectivo(boom.x,boom.y)) == true){ //verifica colision horizontal
+            this.stopGame();
         }
     }
     public void goLEFT(){

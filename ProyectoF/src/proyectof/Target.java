@@ -16,12 +16,17 @@ import javax.swing.JPanel;
  */
 public class Target extends JPanel{
     int x;
-    int y;
+    int y;    
+    int angulo;
+    float radio;
     private int escala;
     
     public Target(int x, int y, int scale){
         this.x = x;
-        this.y = y;
+        this.y = y;    
+        angulo =180;
+        radio = 20f*escala/40;
+
         this.escala = scale;
     }
     
@@ -35,12 +40,27 @@ public class Target extends JPanel{
     public int getescala(){
         return escala;
     }
-    
     public void changexy(int x1, int y1){
         x = x1;
         y= y1;
     }
-    
+    public boolean checkearObjectivo(float x, float y) {
+        Vector dist = new Vector(x - this.x, y - this.y);
+
+        // si el objetivo esta fuera del rango radial, descartar
+        float mag = dist.magnitud();
+        if (mag > radio+15f || mag < radio-15f) {
+            return false;
+        }
+        Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
+        dist.normalizar();
+        frente.normalizar();
+        // si el objetivo esta frente al misil, entonces retornar verdadero
+        if(Vector.dot(dist, frente) > 0f){
+            return true;
+        } // sino, descartar
+        else return false;
+    }
     @Override
      public void paint(Graphics g){
          g.setColor(Color.black);
