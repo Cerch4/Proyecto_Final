@@ -5,23 +5,25 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
 /**
- *
- * @author Cesar
+ *Un sprite de avion para usar en el proyecto final
  */
 public class Avion extends JPanel{
+    /**int para almacenar la coordenada horizontal del avion */
     private int x;
+    /**int para almacenar la coordenada vertical del avion */
     private int y;
     private int escala;
     
-    
-    
+    /** Metodo constructor, asigna los valores de la posicion inicial del avion
+     * @param x posicion inicial del avion en el eje horizontal
+     * @param y posicion inicial del avion en el eje y 
+     */
     public Avion(int x, int y, int escale){
         this.x = x;
         this.y = y;
@@ -39,13 +41,15 @@ public class Avion extends JPanel{
     public int getescala(){
         return escala;
     }
-    
-    
+    /**Cambia la posicion del avion
+     * @param x1 nueva posicion en el eje horizontal
+     * @param y1 nueva posicion en el eje vertical
+     */
     public void changexy(int x1, int y1){
         x = x1;
         y= y1;
     }
-    
+    /**Metodo paint de avion*/
     @Override
      public void paint(Graphics g){
          Graphics2D g2d = (Graphics2D)g;

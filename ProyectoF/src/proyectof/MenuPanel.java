@@ -7,17 +7,38 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.*;
+/**
+ * JPanel que anima las fisicas de lanzamiento de misiles desde un avion
+ * @see Avion
+ * @see Misil
+ * @see Target
+ */
 public class MenuPanel extends JPanel implements MouseListener, ActionListener, MouseMotionListener{
+    /** Int que almacena la escala del panel */
     private int escala;  
+    /** Target que almacena el blanco que se usara en la simulacion*/
     Target target;
+    /** Image que almacena el fondo que se usara en la simulacion*/
     Image backGround;
+    /** Almacena el Avion que se usara en la simulacion*/
     Avion plane;
+    /** Almacena el Misil que se usara en la simulacion*/
     Misil boom;
+    /** Timer que determinara la velocidad de ejecucion del programa*/
     Timer timer;
+    /** ImageIcon que almacena el png que se le asignara de fondo en la simulacion*/
     ImageIcon  temp2;
+    /** Boolean que almacena el estado del misil, true si el misil ha sido disparado*/
     Boolean mState;
-    int xt,yt,xp,yp,vt,vp;
+    /**Ints que almacena la posicion del blanco en el eje horizontal y vertical respespectivamente y el ultimo almacena su velocidad*/
+    int xt,yt,vt;    
+    /**Ints que almacena la posicion del avion en el eje horizontal y vertical respespectivamente y el ultimo almacena su velocidad*/
+    int xp,yp,vp;
+    /** Vector que almacena la posicion del mouse en la pantalla*/
     public Vector posicionMouse;
+    /** Metodo constructor de la clase
+     * @param escala int que asigna velocidad al blanco
+     */
     public MenuPanel(int escala){
         this.escala = escala;
         xt = 0;yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vt = 3;vp = 0;
@@ -40,34 +61,42 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public int getvp(){return vp;}
     public int getxp(){return xp;}
     public int getxt(){return xt;}
+    /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
         boom = new Misil(xp+20,yp-15);        
         boom.angulo = (float) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x)) - (180);
         boom.mover(); 
         mState = true;
     }
+    /** Metodo que inicia el timer de ejecucion de la simulacion*/
     public void startGame(){
         timer.start();
     } 
-    
+    /** Metodo que detiene el timer de ejecucion de la simulacion*/
     public void stopGame(){
         timer.stop();
     }
+    /** Metodo que evalua la posicion del misil respecto al blanco, en casi de que esten en contacto detiene la simulacion*/
     public void checkColition(){ 
         if((target.checkearObjectivo(boom.x,boom.y)) == true){ //verifica colision horizontal
             this.stopGame();
         }
     }
+    /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la derecha cambia el valor de xVelocity, caso contrario no hace nada*/
     public void goLEFT(){
         if(vt > 0){
             vt = vt*-1;
         }
     }
+    /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la izquirda cambia el valor de xVelocity, caso contrario no hace nada*/
     public void goRIGHT(){
         if(vt < 0){
             vt = vt*-1;
         }
     }
+    /** Metodo que renderiza el panel junto con todos sus componentes
+     * @param g objeto de la clase Graphics que permite renderizar el objeto 
+     */
     @Override
     public void paint(Graphics g){
         super.paint(g);
@@ -114,6 +143,8 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     @Override
     public void mouseExited(MouseEvent me) {;
     }
+    /** Metodo que detecta si se ha realizado una accion especifica, en este caso el paso del tiempo basado en el timer, cada vez que se ejecuta actualiza la posicion de todos los objetos del panel
+        al llamar al metodo repaint, */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(mState == true){

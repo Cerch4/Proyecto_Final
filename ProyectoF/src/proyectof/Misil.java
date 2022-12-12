@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 /**
  * Un sprite movil de un misil 2D 
- * @author Cesar
  * @see Vector.java
  * @see Angular.java
  */
