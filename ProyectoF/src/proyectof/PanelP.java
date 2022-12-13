@@ -68,13 +68,17 @@ public class PanelP extends  JPanel implements ActionListener{
     }
     public void checkColition(){
         
-        if((boom.x+10 < x+40) && (boom.x+30 > x)){ //verifica colision horizontal
+        if(target.checkearObjectivo(boom.x, boom.y)==true){
+            this.stopGame();
+        }
+        
+        
+        /* if((boom.x+10 < x+40) && (boom.x+30 > x)){ //verifica colision horizontal
             if((boom.y + 40 < y + 40) && (boom.y + 40 > y)){
                 
                this.stopGame();
-        
-            }
-    }
+               }
+           }*/
     }
     @Override
     public void paint(Graphics g){

@@ -22,10 +22,10 @@ public class Target extends JPanel{
     private int escala;
     
     public Target(int x, int y, int scale){
-        this.x = x;
-        this.y = y;    
+        this.x = x*FrameP.escala/40;
+        this.y = y*FrameP.escala/40;    
         angulo =180;
-        radio = 20f*escala/40;
+        radio = 20f*FrameP.escala/40;
 
         this.escala = scale;
     }
@@ -49,7 +49,7 @@ public class Target extends JPanel{
 
         // si el objetivo esta fuera del rango radial, descartar
         float mag = dist.magnitud();
-        if (mag > radio+15f || mag < radio-15f) {
+        if (mag > radio+(15f*FrameP.escala/40) || mag < radio-(15f*FrameP.escala/40)) {
             return false;
         }
         Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
@@ -63,16 +63,27 @@ public class Target extends JPanel{
     }
     @Override
      public void paint(Graphics g){
-         g.setColor(Color.black);
+         /*g.setColor(Color.black);
          g.drawRoundRect(x*escala/40, y, 40*escala/40, 40*escala/40, 60*escala/40, 60*escala/40);
          g.setColor(Color.lightGray);
          g.fillRoundRect(x*escala/40, y, 40*escala/40, 40*escala/40, 60*escala/40, 60*escala/40);
         
          g.setColor(Color.darkGray);
          g.fillRect(x*escala/40, (y+16*escala/40), 40*escala/40, 6*escala/40);
-         g.fillRect((x+17)*escala/40, y, 6*escala/40, 40*escala/40);
+         g.fillRect((x+17)*escala/40, y, 6*escala/40, 40*escala/40);*/
         //ImageIcon imagen = new ImageIcon(getClass().getResource("Target.png"));
         //g.drawImage(imagen.getImage(), getx(), gety(), 3*getescala()/16, getescala()/4, this);
+        
+        g.setColor(Color.black);
+        g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+         
+         g.drawRoundRect((int)(radio-x), (int)(radio-y), 40, 40, 60, 60);
+         g.setColor(Color.lightGray);
+         g.fillOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+        
+         g.setColor(Color.darkGray);
+         g.fillRect((int)(x-radio), y-(int)(radio/6), (int)(radio*2), 5);
+         g.fillRect(x-(int)(radio/6), (int)(y-radio), 5, (int)(radio*2));
      }
     
 }
