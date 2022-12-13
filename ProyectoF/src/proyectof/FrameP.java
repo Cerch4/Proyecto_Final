@@ -18,7 +18,7 @@ public class FrameP extends JFrame{
     MenuPanel panel;
     JTextField YP,VP;
     JLabel YPT, VPT;
-    JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi;
+    JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi, ChangeSize;
     static int escala;
     
     FrameP(){
@@ -64,11 +64,22 @@ public class FrameP extends JFrame{
         SaveYP = new JButton("Guardar");SaveYP.setBounds(250*escala/40, 19*escala/2, 80*escala/40,15*escala/40);
         SaveVP = new JButton("Guardar");SaveVP.setBounds(250*escala/40, 10*escala, 80*escala/40,15*escala/40);
         ChangeDi = new JButton("Cambiar Direccion");ChangeDi.setBounds(130*escala/40, 21*escala/2, 200*escala/40,15*escala/40);
+        ChangeSize = new JButton("Resize");ChangeSize.setBounds(10*escala/40,21*escala/2, 100*escala/40,15*escala/40);
         Start = new JButton("Start");Start.setBounds(360*escala/40, 19*escala/2, 80*escala/40,15*escala/40);
         Reset = new JButton("Reset");Reset.setBounds(360*escala/40, 10*escala, 80*escala/40,15*escala/40);
         Stop = new JButton("Stop");Stop.setBounds(360*escala/40, 21*escala/2, 80*escala/40,15*escala/40);
-        evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);
-        this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);
+        evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);evento_Resize(ChangeSize);
+        this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);this.add(ChangeSize);
+    }
+    public void evento_Resize(JButton act){
+        act.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Ventana();
+                setVisible(false); 
+                dispose();
+            }
+        });
     }
     public void evento_StartStop(JButton act){
         act.addActionListener(new ActionListener() {
