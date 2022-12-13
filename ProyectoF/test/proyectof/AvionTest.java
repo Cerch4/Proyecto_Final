@@ -32,7 +32,7 @@ public class AvionTest {
     
     @Before
     public void setUp() {
-    nine11 = new Avion(0,0, 160);
+    nine11 = new Avion(0,0);
     }
     
     @After

@@ -16,15 +16,20 @@ public class Misil {
     /**Floats que almacenan la posicion en horizontal y vertical del misil */
     float x, y;
     /** Float que almacena el angulo en que se mueve el misil, en sentido horario*/
-    float angulo = 90; 
+    float angulo;
+    private int escala;
     /** Float que almacena el radio de deteccion de objetos del misil*/
-    float radio = 80*FrameP.escala/40;
+    float radio;
     /** Float que almacena la velocidad de giro del misil*/
-    float velAngular = 5f;
+    float velAngular;
     /** Float que almacena la velocidad de movimiento del misil */
-    float velocidad = 10f;
+
     /** Float que almacena la escala del tamaño del misil*/
-    float t = 10f*FrameP.escala/40;
+
+    float velocidad;
+    /** Float que la escala del tamaño del misil*/
+    float t;
+
     
     /** Metodo constructor de la clase
      * @param x posicion inicial horizontal del misil
@@ -33,7 +38,12 @@ public class Misil {
     public Misil(float x, float y){
         this.x = x;
         this.y = y;
-        
+        this.angulo = 90; 
+        this.escala = Escala.getescala();
+        this.radio = 80*escala/40;
+        this.velAngular = 5f;
+        this.velocidad = 10f;
+        this.t = 10f*escala/40;
     }
     /**Metodo que detecta si un punto esta en el rango de deteccion del Misil
      * @param x coordenada en eje horizontal del punto a analizar
@@ -48,7 +58,6 @@ public class Misil {
         if (mag > radio) {
             return false;
         }else{
-            System.out.print("in");
             return true;
         }
         /*
@@ -106,11 +115,11 @@ public class Misil {
         x += frente.x;
         y += frente.y;
         
-        if(x > 16*FrameP.escala) x = -100*FrameP.escala/40; // cambia a v = 0 *****
-        if(x < 0) x = -100*FrameP.escala/40;
+        if(x > 16*escala) x = -100*escala/40; // cambia a v = 0 *****
+        if(x < 0) x = -100*escala/40;
         
-        if(y > 9*FrameP.escala) y = -100*FrameP.escala/40;
-        if(y < 0) y =-100*FrameP.escala/40;
+        if(y > 9*escala) y = -100*escala/40;
+        if(y < 0) y =-100*escala/40;
     }
     /** Metodo paint del misil, dibuja un misil de un tamaño determinado por el parametro t, contenido dentro un circulo de tamaño determinado por el parametro radio
      * @param g objeto de la clase Graphics que permite renderizar el objeto

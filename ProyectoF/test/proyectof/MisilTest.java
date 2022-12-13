@@ -49,8 +49,8 @@ public class MisilTest {
     public void testCheckearObjectivo() {
         System.out.println("checkearObjectivo");
         Point center = new Point((int)explosive.x,(int)explosive.y);
-        Point test = generaPunto(center, 80*FrameP.escala/40, 0);
-        Point test2 = generaPunto(center,(80*FrameP.escala/40)+1, 30);
+        Point test = generaPunto(center, explosive.radio, 0);
+        Point test2 = generaPunto(center,explosive.radio+1, 30);
         Misil instance = null;
         boolean t1 = explosive.checkearObjectivo(test.x, test.y);
         boolean t2 = explosive.checkearObjectivo(test2.x, test2.y);
@@ -68,7 +68,7 @@ public class MisilTest {
     public void testGirar() {
         System.out.println("girar");
         Point center = new Point((int)explosive.x,(int)explosive.y);
-        Point test = generaPunto(center, 80*FrameP.escala/40, explosive.angulo+(explosive.velAngular));
+        Point test = generaPunto(center, explosive.radio, explosive.angulo+(explosive.velAngular));
         float expResult = explosive.angulo-(explosive.velAngular);
         explosive.girar(test.x, test.y);
         assertEquals(expResult, explosive.angulo,0);
@@ -84,7 +84,7 @@ public class MisilTest {
         Vector testVec = new Vector((float) Math.cos(Math.toRadians(explosive.angulo)), (float) Math.sin(Math.toRadians(explosive.angulo)));
         testVec.escalar(explosive.velocidad);
         Float exp_posx = explosive.x+testVec.x;
-        Float exp_y = testVec.y;
+        Float exp_y = explosive.y+testVec.y;
         explosive.mover();
         
         
