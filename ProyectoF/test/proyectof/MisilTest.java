@@ -5,12 +5,14 @@
 package proyectof;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static proyectof.Angular.generaPunto;
 
 /**
  *s
@@ -33,7 +35,7 @@ public class MisilTest {
     
     @Before
     public void setUp() {
-        explosive = new Misil( 10f, 20f);
+        explosive = new Misil( 20f, 20f);
     }
     
     @After
@@ -41,19 +43,22 @@ public class MisilTest {
     }
 
     /**
-     * Test of checkearObjectivo method, of class Misil.
+     * Test of checkearObjectivo method, of class Misil. En este test se crean dos puntos y se verifica si estan o no dentro el rango de deteccion del misil
      */
     @Test
     public void testCheckearObjectivo() {
         System.out.println("checkearObjectivo");
-        float x = 0.0F;
-        float y = 0.0F;
+        Point center = new Point((int)explosive.x,(int)explosive.y);
+        Point test = generaPunto(center, 80*FrameP.escala/40, 0);
+        Point test2 = generaPunto(center,(80*FrameP.escala/40)+1, 30);
         Misil instance = null;
-        boolean expResult = false;
-        boolean result = instance.checkearObjectivo(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean t1 = explosive.checkearObjectivo(test.x, test.y);
+        boolean t2 = explosive.checkearObjectivo(test2.x, test2.y);
+        boolean expResult_tooClose = true;
+        boolean expResult_tooFar = false;
+        
+        assertEquals(expResult_tooClose, t1);
+        assertEquals(expResult_tooFar, t2);
     }
 
     /**
@@ -62,12 +67,12 @@ public class MisilTest {
     @Test
     public void testGirar() {
         System.out.println("girar");
-        float x = 0.0F;
-        float y = 0.0F;
-        Misil instance = null;
-        instance.girar(x, y);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Point center = new Point((int)explosive.x,(int)explosive.y);
+        Point test = generaPunto(center, 80*FrameP.escala/40, explosive.angulo+(explosive.velAngular));
+        float expResult = explosive.angulo-(explosive.velAngular);
+        explosive.girar(test.x, test.y);
+        assertEquals(expResult, explosive.angulo,0);
+        
     }
 
     /**
@@ -76,10 +81,15 @@ public class MisilTest {
     @Test
     public void testMover() {
         System.out.println("mover");
-        Misil instance = null;
-        instance.mover();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Vector testVec = new Vector((float) Math.cos(Math.toRadians(explosive.angulo)), (float) Math.sin(Math.toRadians(explosive.angulo)));
+        testVec.escalar(explosive.velocidad);
+        Float exp_posx = explosive.x+testVec.x;
+        Float exp_y = testVec.y;
+        explosive.mover();
+        
+        
+        assertEquals(exp_posx, explosive.x,0);
+        assertEquals(exp_y, explosive.y,0);
     }
 
     /**

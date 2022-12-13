@@ -23,7 +23,7 @@ public class Misil {
     float velAngular = 5f;
     /** Float que almacena la velocidad de movimiento del misil */
     float velocidad = 10f;
-    /** Float que la escala del tamaño del misil*/
+    /** Float que almacena la escala del tamaño del misil*/
     float t = 10f*FrameP.escala/40;
     
     /** Metodo constructor de la clase
