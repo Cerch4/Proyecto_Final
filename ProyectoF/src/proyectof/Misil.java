@@ -116,12 +116,12 @@ public class Misil {
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+        //g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
 
-        Vector linea = new Vector((float) Math.cos(Math.toRadians(angulo + 90)), (float) Math.sin(Math.toRadians(angulo + 90)));
-        linea.escalar(radio);
+        //Vector linea = new Vector((float) Math.cos(Math.toRadians(angulo + 90)), (float) Math.sin(Math.toRadians(angulo + 90)));
+        //linea.escalar(radio);
 
-        g.drawLine((int) (x + linea.x), (int) (y + linea.y), (int) (x - linea.x), (int) (y - linea.y));
+        //g.drawLine((int) (x + linea.x), (int) (y + linea.y), (int) (x - linea.x), (int) (y - linea.y));
         
         Polygon poly = new Polygon();
         

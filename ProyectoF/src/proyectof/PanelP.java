@@ -47,9 +47,10 @@ public class PanelP extends  JPanel implements ActionListener{
         temp2 = new ImageIcon(this.getClass().getResource("background.png"));
         backGround = temp2.getImage();
         timer = new Timer(20,this);
-        timer2 = new Timer(20,this);
+        
         timer.start();
-
+        
+        
         this.xVelocity = xVelocity;
         
     }
@@ -98,7 +99,8 @@ public class PanelP extends  JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e){
         /*if(x>=PANEL_WIDTH-60 || x<0) {
 			xVelocity = xVelocity * -1;
-		} */
+	} */
+        
         if(mState == true){
             boom.y= boom.y+1;
             this.checkColition();

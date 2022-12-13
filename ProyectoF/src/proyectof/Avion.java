@@ -16,9 +16,9 @@ import javax.swing.JPanel;
  * @author Cesar
  */
 public class Avion extends JPanel{
-    private int x;
-    private int y;
-    private int escala;
+    public int x;
+    public int y;
+    public int escala;
     
     
     
