@@ -13,7 +13,7 @@ public class Ventana extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
-        this.setResizable(false);
+        setResizable(false);
         crearMenu();
         setVisible(true); 
     }

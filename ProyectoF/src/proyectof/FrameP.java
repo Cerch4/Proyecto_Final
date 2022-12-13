@@ -31,6 +31,7 @@ public class FrameP extends JFrame{
         this.crearGUI();
         this.setLocationRelativeTo(null);
         this.setLayout(null);
+        this.setResizable(false);
         this.setVisible(true);
         this.addKeyListener(new KeyListener(){
             @Override
