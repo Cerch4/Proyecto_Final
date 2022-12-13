@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="4" failures="0" hostname="DESKTOP-AHFQ9L9" name="proyectof.MisilTest" skipped="0" tests="4" time="0.083" timestamp="2022-12-13T04:05:29">
+<testsuite errors="4" failures="0" hostname="DESKTOP-AHFQ9L9" name="proyectof.MisilTest" skipped="0" tests="4" time="0.086" timestamp="2022-12-13T04:11:46">
   <properties>
     <property name="libs.spring-framework300.classpath" value="C:\Program Files\NetBeans-14\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-aop-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-aspects-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-beans-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-context-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-context-support-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-core-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-expression-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-instrument-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-jdbc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-jms-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-orm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-oxm-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-struts-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-test-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-tx-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-web-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-webmvc-3.2.18.RELEASE.jar;C:\Program Files\NetBeans-14\netbeans\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.18.RELEASE.jar" />
     <property name="javac.test.classpath" value="C:\Program Files\NetBeans-14\netbeans\platform\modules\ext\junit-4.13.2.jar:hamcrest-core-1.3.jar:junit-4.13.2.jar:build/classes:C:\Program Files\NetBeans-14\netbeans\platform\modules\ext\junit-jupiter-api-5.6.0.jar;C:\Program Files\NetBeans-14\netbeans\platform\modules\ext\junit-jupiter-params-5.6.0.jar;C:\Program Files\NetBeans-14\netbeans\platform\modules\ext\junit-jupiter-engine-5.6.0.jar" />
@@ -18,7 +18,7 @@
     <property name="libs.eclipselink.javadoc" value="C:\Program Files\NetBeans-14\netbeans\java\modules\ext\docs\jakarta.persistence-2.2.3-doc.zip" />
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-18.0.2.1\bin" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner proyectof.MisilTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Cesar\Documents\NetBeansProjects\Proyecto_Final\ProyectoF\build\test\results\TEST-proyectof.MisilTest.xml crashfile=C:\Users\Cesar\Documents\NetBeansProjects\Proyecto_Final\ProyectoF\build\junitvmwatcher4070244328715483392.properties propsfile=C:\Users\Cesar\Documents\NetBeansProjects\Proyecto_Final\ProyectoF\build\junit341076339345781894.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner proyectof.MisilTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Cesar\Documents\NetBeansProjects\Proyecto_Final\ProyectoF\build\test\results\TEST-proyectof.MisilTest.xml crashfile=C:\Users\Cesar\Documents\NetBeansProjects\Proyecto_Final\ProyectoF\build\junitvmwatcher6080251629774881320.properties propsfile=C:\Users\Cesar\Documents\NetBeansProjects\Proyecto_Final\ProyectoF\build\junit1255547895163550169.properties" />
     <property name="jdk.debug" value="release" />
     <property name="libs.spring-framework300.src" value="" />
     <property name="javadoc.use" value="true" />
@@ -419,7 +419,7 @@
     <property name="libs.jsp-compiler.classpath" value="C:\Program Files\NetBeans-14\netbeans\enterprise\ant\extra\jspcompile.jar" />
     <property name="libs.javaee-endorsed-api-6.0.classpath" value="C:\Program Files\NetBeans-14\netbeans\enterprise\modules\ext\javaee6-endorsed\javax.annotation.jar;C:\Program Files\NetBeans-14\netbeans\enterprise\modules\ext\javaee6-endorsed\jaxb-api-osgi.jar;C:\Program Files\NetBeans-14\netbeans\enterprise\modules\ext\javaee6-endorsed\webservices-api-osgi.jar" />
   </properties>
-  <testcase classname="proyectof.MisilTest" name="testGirar" time="0.023">
+  <testcase classname="proyectof.MisilTest" name="testGirar" time="0.025">
     <error message="Cannot invoke &quot;proyectof.Misil.girar(float, float)&quot; because &quot;instance&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;proyectof.Misil.girar(float, float)&quot; because &quot;instance&quot; is null
 	at proyectof.MisilTest.testGirar(MisilTest.java:68)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
@@ -431,13 +431,13 @@
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 </error>
   </testcase>
-  <testcase classname="proyectof.MisilTest" name="testPaint" time="0.0">
+  <testcase classname="proyectof.MisilTest" name="testPaint" time="0.001">
     <error message="Cannot invoke &quot;proyectof.Misil.paint(java.awt.Graphics)&quot; because &quot;instance&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;proyectof.Misil.paint(java.awt.Graphics)&quot; because &quot;instance&quot; is null
 	at proyectof.MisilTest.testPaint(MisilTest.java:93)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 </error>
   </testcase>
-  <testcase classname="proyectof.MisilTest" name="testCheckearObjectivo" time="0.0">
+  <testcase classname="proyectof.MisilTest" name="testCheckearObjectivo" time="0.001">
     <error message="Cannot invoke &quot;proyectof.Misil.checkearObjectivo(float, float)&quot; because &quot;instance&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;proyectof.Misil.checkearObjectivo(float, float)&quot; because &quot;instance&quot; is null
 	at proyectof.MisilTest.testCheckearObjectivo(MisilTest.java:53)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
