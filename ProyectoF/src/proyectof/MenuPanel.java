@@ -63,7 +63,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public int getxt(){return xt;}
     /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
-        boom = new Misil(xp+20,yp-15);        
+        boom = new Misil(xp+20*escala/40,yp-15*escala/40);        
         boom.angulo = (float) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x)) - (180);
         boom.mover(); 
         mState = true;

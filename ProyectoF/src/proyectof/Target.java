@@ -24,8 +24,7 @@ public class Target extends JPanel{
         this.x = x;
         this.y = y;    
         angulo =180;
-        radio = 20f*escala/40;
-
+        radio = (20f)*scale/40;
         this.escala = scale;
     }
     
@@ -68,13 +67,12 @@ public class Target extends JPanel{
     @Override
      public void paint(Graphics g){
          g.setColor(Color.black);
-         g.drawRoundRect(x*escala/40, y, 40*escala/40, 40*escala/40, 60*escala/40, 60*escala/40);
+         g.drawOval(x*escala/40, y, (int)radio*2, (int)radio*2);
          g.setColor(Color.lightGray);
-         g.fillRoundRect(x*escala/40, y, 40*escala/40, 40*escala/40, 60*escala/40, 60*escala/40);
-        
+         g.fillOval(x*escala/40, y, (int)radio*2, (int)radio*2);
          g.setColor(Color.darkGray);
-         g.fillRect(x*escala/40, (y+16*escala/40), 40*escala/40, 6*escala/40);
-         g.fillRect((x+17)*escala/40, y, 6*escala/40, 40*escala/40);
+         g.fillRect(x*escala/40, (y+16*escala/40), (int)radio*2, 6*escala/40);
+         g.fillRect((x+17)*escala/40, y, 6*escala/40, (int)radio*2);
         //ImageIcon imagen = new ImageIcon(getClass().getResource("Target.png"));
         //g.drawImage(imagen.getImage(), getx(), gety(), 3*getescala()/16, getescala()/4, this);
      }
