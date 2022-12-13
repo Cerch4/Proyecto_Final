@@ -155,8 +155,8 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
                 this.checkColition();
                 xt = xt + vt;
                 xp = xp + vp;
-                if(boom.checkearObjectivo((float)target.x*escala/40, (float)target.y)){
-                    boom.girar((float)target.x*escala/40, (float)target.y);
+                if(boom.checkearObjectivo((float)(target.x*escala/40)+target.radio, (float)target.y+target.radio)){
+                    boom.girar((float)(target.x*escala/40)+target.radio, (float)target.y+target.radio);
                 }
                 boom.mover();  
             }

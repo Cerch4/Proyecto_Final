@@ -47,13 +47,15 @@ public class Target extends JPanel{
         y= y1;
     }
     public boolean checkearObjectivo(float x, float y) {
-        Vector dist = new Vector(x - this.x, y - this.y);
+        Vector dist = new Vector(x - (this.x*escala/40)-radio, y - this.y-radio);
 
         // si el objetivo esta fuera del rango radial, descartar
         float mag = dist.magnitud();
-        if (mag > radio+15f || mag < radio-15f) {
+        if (mag > radio /*+15f || mag < radio-15f*/) {
             return false;
-        }
+        }else{
+            return true;
+        }/*
         Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
         dist.normalizar();
         frente.normalizar();
@@ -61,7 +63,7 @@ public class Target extends JPanel{
         if(Vector.dot(dist, frente) > 0f){
             return true;
         } // sino, descartar
-        else return false;
+        else return false;*/
     }
     /** Metodo que renderiza el objeto*/
     @Override
