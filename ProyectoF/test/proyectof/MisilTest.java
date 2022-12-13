@@ -35,6 +35,7 @@ public class MisilTest {
     
     @Before
     public void setUp() {
+        Escala.setescala(40);
         explosive = new Misil( 20f, 20f);
     }
     
@@ -69,7 +70,7 @@ public class MisilTest {
         System.out.println("girar");
         Point center = new Point((int)explosive.x,(int)explosive.y);
         Point test = generaPunto(center, explosive.radio, explosive.angulo+(explosive.velAngular));
-        float expResult = explosive.angulo-(explosive.velAngular);
+        float expResult = explosive.angulo+(explosive.velAngular);
         explosive.girar(test.x, test.y);
         assertEquals(expResult, explosive.angulo,0);
         
@@ -81,28 +82,16 @@ public class MisilTest {
     @Test
     public void testMover() {
         System.out.println("mover");
+        Escala.setescala(40);
         Vector testVec = new Vector((float) Math.cos(Math.toRadians(explosive.angulo)), (float) Math.sin(Math.toRadians(explosive.angulo)));
         testVec.escalar(explosive.velocidad);
-        Float exp_posx = explosive.x+testVec.x;
-        Float exp_y = explosive.y+testVec.y;
+        Float exp_posx = explosive.x+(float)testVec.x;
+        Float exp_y = explosive.y+(float)testVec.y;
+
         explosive.mover();
         
-        
-        assertEquals(exp_posx, explosive.x,0);
         assertEquals(exp_y, explosive.y,0);
-    }
-
-    /**
-     * Test of paint method, of class Misil.
-     */
-    @Test
-    public void testPaint() {
-        System.out.println("paint");
-        Graphics g = null;
-        Misil instance = null;
-        instance.paint(g);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(exp_posx, explosive.x,0);
     }
     
 }

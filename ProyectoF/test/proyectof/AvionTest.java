@@ -88,7 +88,7 @@ public class AvionTest {
     @Test
     public void testGetescala() {
         System.out.println("getescala");
-        int expResult = 160;
+        int expResult = Escala.getescala();
         int result = nine11.getescala();
         assertEquals(expResult, result);
     }
