@@ -19,11 +19,12 @@ public class FrameP extends JFrame{
     JTextField YP,VP;
     JLabel YPT, VPT;
     JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi, ChangeSize;
-    static int escala;
+    private int escala;
     
     FrameP(){
         super();
-        panel = new MenuPanel(escala);
+        this.escala = Escala.getescala();
+        this.panel = new MenuPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(new Dimension(16*escala+16, 12*escala)); // por alguna razon no se dimenciona 
         this.setTitle("Proyecto Final Tema 3");

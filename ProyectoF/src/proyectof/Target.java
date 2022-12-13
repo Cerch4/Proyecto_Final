@@ -20,12 +20,12 @@ public class Target extends JPanel{
      * @param x posicion inicial horizontal de target
      * @param y posicion inicial vertical de target
      */
-    public Target(int x, int y, int scale){
+    public Target(int x, int y){
         this.x = x;
         this.y = y;    
         angulo =180;
-        radio = (20f)*scale/40;
-        this.escala = scale;
+        this.escala = Escala.getescala();
+        radio = (20f)*escala/40;
     }
     
     public int getx(){

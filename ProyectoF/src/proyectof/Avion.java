@@ -24,10 +24,10 @@ public class Avion extends JPanel{
      * @param x posicion inicial del avion en el eje horizontal
      * @param y posicion inicial del avion en el eje y 
      */
-    public Avion(int x, int y, int escale){
+    public Avion(int x, int y){
         this.x = x;
         this.y = y;
-        this.escala = escale;
+        this.escala = Escala.getescala();
         
     }
     

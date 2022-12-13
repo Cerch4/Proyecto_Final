@@ -29,19 +29,19 @@ public class Ventana extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (act.getBounds().y == 220) {
-                    FrameP.escala = 40;
+                    Escala.setescala(40);
                     new FrameP();
                     setVisible(false); 
                     dispose();
                 }
                 if (act.getBounds().y == 280) {
-                    FrameP.escala = 80;
+                    Escala.setescala(80);
                     new FrameP();
                     setVisible(false); 
                     dispose();
                 }
                 if (act.getBounds().y == 340) {
-                    FrameP.escala = 120;
+                    Escala.setescala(120);
                     new FrameP();
                     setVisible(false); 
                     dispose();

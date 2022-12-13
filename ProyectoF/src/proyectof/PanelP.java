@@ -39,8 +39,8 @@ public class PanelP extends  JPanel implements ActionListener{
     
     public PanelP(int xVelocity){
         mState = false;
-        target = new Target(x,y,escala);
-        plane = new Avion(planex, planey, escala);
+        target = new Target(x,y);
+        plane = new Avion(planex, planey);
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.white);
         

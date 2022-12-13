@@ -39,11 +39,11 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     /** Metodo constructor de la clase
      * @param escala int que asigna velocidad al blanco
      */
-    public MenuPanel(int escala){
-        this.escala = escala;
+    public MenuPanel(){
+        this.escala = Escala.getescala();
         xt = 0;yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vt = 3;vp = 0;
         mState=false;
-        target = new Target(xt,yt,escala);plane = new Avion(xp, yp, escala);
+        target = new Target(xt,yt);plane = new Avion(xp, yp);
         this.setBounds(0, 0, 16*escala, 9*escala);
         this.setBackground(Color.white);
         this.addMouseListener(this);
@@ -104,7 +104,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
         g2D.drawImage(backGround, 0, 0, this);
         target.paint(g2D);
         plane.paint(g2D);
-        for(int k = yp-15; k<16*FrameP.escala; k = k+1){
+        for(int k = yp-15; k<16*escala; k = k+1){
             double angle = (double) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x));
             Point p = Angular.generaPunto((int)xp+20, (int)yp-15, k, -angle+180);
             if(k%5 == 0){
