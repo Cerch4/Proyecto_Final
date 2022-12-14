@@ -55,15 +55,7 @@ public class Target extends JPanel{
             return false;
         }else{
             return true;
-        }/*
-        Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
-        dist.normalizar();
-        frente.normalizar();
-        // si el objetivo esta frente al misil, entonces retornar verdadero
-        if(Vector.dot(dist, frente) > 0f){
-            return true;
-        } // sino, descartar
-        else return false;*/
+        }
     }
     /** Metodo que renderiza el objeto*/
     @Override
