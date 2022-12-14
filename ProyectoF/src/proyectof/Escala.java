@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyectof;
+/**Clase Escala Singleton-Proxy que sirve como almacenamiento y distribucion del a Varible escala a Todas las demas clases*/
 public class Escala {
         private static Escala instancia = new Escala();
         private Escala(){}
+        /**int para almacenar la escala que s e utilizara por todas las clases*/
         private static int escala;
         public static Escala getInstancia(){
             return instancia;

@@ -46,10 +46,8 @@ public class Target extends JPanel{
      */
     public boolean checkearObjectivo(float x, float y) {
         Vector dist = new Vector(x - (this.x*escala/40)-radio, y - this.y-radio);
-
-        // si el objetivo esta fuera del rango radial, descartar
         float mag = dist.magnitud();
-        if (mag > radio /*+15f || mag < radio-15f*/) {
+        if (mag > radio) {
             return false;
         }else{
             return true;

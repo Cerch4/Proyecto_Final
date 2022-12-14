@@ -13,7 +13,7 @@ import javax.swing.*;
  * @see Misil
  * @see Target
  */
-public class MenuPanel extends JPanel implements MouseListener, ActionListener, MouseMotionListener{
+public class MPanel extends JPanel implements MouseListener, ActionListener, MouseMotionListener{
     /**int para almacenar la escala del panel respecto a la ventana*/
     private int escala;  
     /** Target que almacena el blanco que se usara en la simulacion*/
@@ -36,9 +36,8 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     private int xp,yp,vp;
     /** Vector que almacena la posicion del mouse en la pantalla*/
     private Vector posicionMouse;
-    /** Metodo constructor de la clase
-     */
-    public MenuPanel(){
+    /** Metodo constructor de la clase MPanel*/
+    public MPanel(){
         this.escala = Escala.getescala();
         xt = 0;yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vt = 3;vp = 0;
         mState=false;
@@ -84,18 +83,6 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public void checkColition(){ 
         if((target.checkearObjectivo(boom.getx(),boom.gety())) == true){ //verifica colision horizontal
             this.stopGame();
-        }
-    }
-    /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la derecha cambia el valor de xVelocity, caso contrario no hace nada*/
-    public void goLEFT(){
-        if(vt > 0){
-            vt = vt*-1;
-        }
-    }
-    /** Metodo que cambia la direccion de movimiento del blanco, si esta moviendose a la izquirda cambia el valor de xVelocity, caso contrario no hace nada*/
-    public void goRIGHT(){
-        if(vt < 0){
-            vt = vt*-1;
         }
     }
     /** Metodo que renderiza el panel junto con todos sus componentes
@@ -148,7 +135,8 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public void mouseExited(MouseEvent me) {;
     }
     /** Metodo que detecta si se ha realizado una accion especifica, en este caso el paso del tiempo basado en el timer, cada vez que se ejecuta actualiza la posicion de todos los objetos del panel
-        al llamar al metodo repaint, */
+        al llamar al metodo repaint
+      * @param e Objeto de la Clase ActionEvent que detecta los evento*/
     @Override
     public void actionPerformed(ActionEvent e) {
         if(mState == true){

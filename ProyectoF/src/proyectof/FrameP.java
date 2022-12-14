@@ -1,33 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package proyectof;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.*;
-/**
- * * @author Cesar
- */
 public class FrameP extends JFrame{
-    private MenuPanel panel;
+    /**MenuPanel es una extension de JPanel la cual sera la parte Grafica/Animacion de esta Ventana*/
+    private MPanel panel;
+    /**JTextField Consiste en una Espacio de Texto en la GUI que sirve para recivir parametros escritos durante la ejecucion de la aplicacion en este caso altura y velocidad de avion respectivamente */
     private JTextField YP,VP;
+    /**JLabel para almacenar el texto que se busca imprimir en pantalla para identificar YP y VP*/
     private JLabel YPT, VPT;
+    /**JButton para imprirse en Ventana y perimitir Interaccion con la interfaz*/
     private JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi, ChangeSize, ChangeTD;
     /**int para almacenar la escala de esta ventana, parametro que consiste en el ancho y alto de la ventana siendo 16*escala el ancho y 12*escala el alto*/
     private int escala;
-    
-    FrameP(){
+    /**Metodo Constructor de FrameP*/
+    public FrameP(){
         super();
         this.escala = Escala.getescala();
-        this.panel = new MenuPanel();
+        this.panel = new MPanel();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(new Dimension(16*escala+16, 12*escala)); // por alguna razon no se dimenciona 
+        this.setSize(new Dimension(16*escala+16, 12*escala)); 
         this.setTitle("Proyecto Final Tema 3");
         this.add(panel);
         this.crearGUI();
@@ -35,30 +30,8 @@ public class FrameP extends JFrame{
         this.setLayout(null);
         this.setResizable(false);
         this.setVisible(true);
-        this.addKeyListener(new KeyListener(){
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    System.out.println("Hi");
-                }
-            }
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
-                    panel.misilLaunch();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_LEFT){
-                    panel.goLEFT();
-                }
-                if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                    panel.goRIGHT();
-                }
-            }
-        });
     }
+    /**Crea new de las variables JLabel, JTextField y JButton, les da su dimencion y posicion en pantalla ademas de agregarles sus eventos y luego agregarlos al Frame*/
     public void crearGUI(){
         YPT= new JLabel("Altura del Avion: ");YPT.setBounds(10*escala/40,19*escala/2, 100*escala/40,10*escala/40);
         VPT= new JLabel("Velocidad del Avion: ");VPT.setBounds(10*escala/40,10*escala, 120*escala/40,10*escala/40);
@@ -75,6 +48,7 @@ public class FrameP extends JFrame{
         evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_Guardar(ChangeTD);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);evento_Resize(ChangeSize);
         this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);this.add(ChangeTD);this.add(ChangeSize);
     }
+    /**Metodo de evento para reajustar el tamañan de la pantalla*/
     public void evento_Resize(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
@@ -85,6 +59,7 @@ public class FrameP extends JFrame{
             }
         });
     }
+    /**Metodo de evento para Iniciar, Resetear y Detener la Animacion*/
     public void evento_StartStop(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
@@ -106,6 +81,7 @@ public class FrameP extends JFrame{
             }
         });
     }
+    /**Metodo de evento para Usar los datos ingresados en los TextField precionando sus respectivos JButton adyacentes ademas de los eventos para cambiar la direccion del avion y target siendo estos los ultimos 2 respectivamente*/
     public void evento_Guardar(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
