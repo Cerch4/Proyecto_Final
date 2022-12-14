@@ -47,7 +47,6 @@ public class TargetTest {
     @Test
     public void testGetx() {
         System.out.println("getx");
-        Target instance = null;
         int expResult = 10;
         int result = bullseye.getx();
         assertEquals(expResult, result);
@@ -59,7 +58,6 @@ public class TargetTest {
     @Test
     public void testGety() {
         System.out.println("gety");
-        Target instance = null;
         int expResult = 300;
         int result = bullseye.gety();
         assertEquals(expResult, result);
@@ -102,7 +100,6 @@ public class TargetTest {
         Point center = new Point(bullseye.x,bullseye.y);
         Point test = generaPunto(center, bullseye.radio, 0);
         Point test2 = generaPunto(center,bullseye.radio+1, 30);
-        Misil instance = null;
         boolean t1 = bullseye.checkearObjectivo(test.x, test.y);
         boolean t2 = bullseye.checkearObjectivo(test2.x, test2.y);
         boolean expResult_tooClose = true;

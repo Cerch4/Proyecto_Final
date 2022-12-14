@@ -2,7 +2,7 @@ package proyectof;
 
 import java.awt.Point;
 
-/**Clase que entrega un punto en una posicion relativa a otro 
+/**Clase que entrega un punto en una posicion relativa a otro (usa overloading en sus metodos)
  */
 public class Angular {
     
