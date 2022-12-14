@@ -52,7 +52,6 @@ public class MisilTest {
         Point center = new Point((int)explosive.getx(),(int)explosive.gety());
         Point test = generaPunto(center, explosive.getradio(), 0);
         Point test2 = generaPunto(center,explosive.getradio()+1, 30);
-        Misil instance = null;
         boolean t1 = explosive.checkearObjectivo(test.x, test.y);
         boolean t2 = explosive.checkearObjectivo(test2.x, test2.y);
         boolean expResult_tooClose = true;
