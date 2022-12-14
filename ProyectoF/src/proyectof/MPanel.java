@@ -162,9 +162,7 @@ public class MPanel extends JPanel implements MouseListener, ActionListener, Mou
         }
         if(mState == false){
             xt = xt + vt;
-            if(xt<=(16*escala)) {
-		xp = xp + vp;
-            }
+            xp = xp + vp;
         }
         if (xt*escala/40>(16*escala)-(escala) || xt < 0) {
             vt = vt*-1;

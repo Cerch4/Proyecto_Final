@@ -38,7 +38,7 @@ public class Misil extends JPanel{
         this.angulo = 90; 
         this.escala = Escala.getescala();
         this.radio = 80*escala/40;
-        this.velAngular = 5f;
+        this.velAngular = 10f;
         this.velocidad = 10f*escala/40;
         this.t = 10f*escala/40;
     }
