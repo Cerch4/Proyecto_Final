@@ -81,7 +81,6 @@ public class FrameP extends JFrame{
                         panel.setxt(0);
                     }
                     panel.setvt(temp);
-                    System.out.println(temp);
                     try{
                         panel.getMisil().changexy(17*escala,13*escala);
                     }catch(Exception ex){
