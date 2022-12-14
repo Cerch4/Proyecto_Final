@@ -99,9 +99,9 @@ public class TargetTest {
     public void testCheckearObjectivo() {
         System.out.println("checkearObjectivo");
         System.out.println("checkearObjectivo");
-        Point center = new Point(bullseye.x,bullseye.y);
-        Point test = generaPunto(center, bullseye.radio, 0);
-        Point test2 = generaPunto(center,bullseye.radio+1, 30);
+        Point center = new Point(bullseye.getx(),bullseye.gety());
+        Point test = generaPunto(center, bullseye.getradio(), 0);
+        Point test2 = generaPunto(center,bullseye.getradio()+1, 30);
         Misil instance = null;
         boolean t1 = bullseye.checkearObjectivo(test.x, test.y);
         boolean t2 = bullseye.checkearObjectivo(test2.x, test2.y);

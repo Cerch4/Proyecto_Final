@@ -68,8 +68,8 @@ public class PanelP extends  JPanel implements ActionListener{
     }
     public void checkColition(){
         
-        if((boom.x+10 < x+40) && (boom.x+30 > x)){ //verifica colision horizontal
-            if((boom.y + 40 < y + 40) && (boom.y + 40 > y)){
+        if((boom.getx()+10 < x+40) && (boom.getx()+30 > x)){ //verifica colision horizontal
+            if((boom.gety() + 40 < y + 40) && (boom.gety() + 40 > y)){
                 
                this.stopGame();
         
@@ -96,7 +96,7 @@ public class PanelP extends  JPanel implements ActionListener{
 			xVelocity = xVelocity * -1;
 		} */
         if(mState == true){
-            boom.y= boom.y+1;
+            boom.sety(boom.gety()+1);
             this.checkColition();
             planex = planex + planeVelocity;
         }

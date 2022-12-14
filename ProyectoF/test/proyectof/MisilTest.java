@@ -49,9 +49,9 @@ public class MisilTest {
     @Test
     public void testCheckearObjectivo() {
         System.out.println("checkearObjectivo");
-        Point center = new Point((int)explosive.x,(int)explosive.y);
-        Point test = generaPunto(center, explosive.radio, 0);
-        Point test2 = generaPunto(center,explosive.radio+1, 30);
+        Point center = new Point((int)explosive.getx(),(int)explosive.gety());
+        Point test = generaPunto(center, explosive.getradio(), 0);
+        Point test2 = generaPunto(center,explosive.getradio()+1, 30);
         Misil instance = null;
         boolean t1 = explosive.checkearObjectivo(test.x, test.y);
         boolean t2 = explosive.checkearObjectivo(test2.x, test2.y);
@@ -68,11 +68,11 @@ public class MisilTest {
     @Test
     public void testGirar() {
         System.out.println("girar");
-        Point center = new Point((int)explosive.x,(int)explosive.y);
-        Point test = generaPunto(center, explosive.radio, explosive.angulo+(explosive.velAngular));
-        float expResult = explosive.angulo+(explosive.velAngular);
+        Point center = new Point((int)explosive.getx(),(int)explosive.gety());
+        Point test = generaPunto(center, explosive.getradio(), explosive.getangulo()+(explosive.getvelAngular()));
+        float expResult = explosive.getangulo()+(explosive.getvelAngular());
         explosive.girar(test.x, test.y);
-        assertEquals(expResult, explosive.angulo,0);
+        assertEquals(expResult, explosive.getangulo(),0);
         
     }
 
@@ -83,15 +83,15 @@ public class MisilTest {
     public void testMover() {
         System.out.println("mover");
         Escala.setescala(40);
-        Vector testVec = new Vector((float) Math.cos(Math.toRadians(explosive.angulo)), (float) Math.sin(Math.toRadians(explosive.angulo)));
-        testVec.escalar(explosive.velocidad);
-        Float exp_posx = explosive.x+(float)testVec.x;
-        Float exp_y = explosive.y+(float)testVec.y;
+        Vector testVec = new Vector((float) Math.cos(Math.toRadians(explosive.getangulo())), (float) Math.sin(Math.toRadians(explosive.getangulo())));
+        testVec.escalar(explosive.getvelocidad());
+        Float exp_posx = explosive.getx()+(float)testVec.x;
+        Float exp_y = explosive.gety()+(float)testVec.y;
 
         explosive.mover();
         
-        assertEquals(exp_y, explosive.y,0);
-        assertEquals(exp_posx, explosive.x,0);
+        assertEquals(exp_y, explosive.gety(),0);
+        assertEquals(exp_posx, explosive.getx(),0);
     }
     
 }

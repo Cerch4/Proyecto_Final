@@ -17,25 +17,25 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     /** Int que almacena la escala del panel */
     private int escala;  
     /** Target que almacena el blanco que se usara en la simulacion*/
-    Target target;
+    private Target target;
     /** Image que almacena el fondo que se usara en la simulacion*/
-    Image backGround;
+    private Image backGround;
     /** Almacena el Avion que se usara en la simulacion*/
-    Avion plane;
+    private Avion plane;
     /** Almacena el Misil que se usara en la simulacion*/
-    Misil boom;
+    private Misil boom;
     /** Timer que determinara la velocidad de ejecucion del programa*/
-    Timer timer;
+    private Timer timer;
     /** ImageIcon que almacena el png que se le asignara de fondo en la simulacion*/
-    ImageIcon  temp2;
+    private ImageIcon  temp2;
     /** Boolean que almacena el estado del misil, true si el misil ha sido disparado*/
-    Boolean mState;
+    private Boolean mState;
     /**Ints que almacena la posicion del blanco en el eje horizontal y vertical respespectivamente y el ultimo almacena su velocidad*/
-    int xt,yt,vt;    
+    private int xt,yt,vt;    
     /**Ints que almacena la posicion del avion en el eje horizontal y vertical respespectivamente y el ultimo almacena su velocidad*/
-    int xp,yp,vp;
+    private int xp,yp,vp;
     /** Vector que almacena la posicion del mouse en la pantalla*/
-    public Vector posicionMouse;
+    private Vector posicionMouse;
     /** Metodo constructor de la clase
      * @param escala int que asigna velocidad al blanco
      */
@@ -69,7 +69,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
         boom = new Misil(xp+20*escala/40,yp-15*escala/40);        
-        boom.angulo = (float) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x)) - (180);
+        boom.setangulo((float) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x)) - (180));
         boom.mover(); 
         mState = true;
     }
@@ -83,7 +83,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     }
     /** Metodo que evalua la posicion del misil respecto al blanco, en casi de que esten en contacto detiene la simulacion*/
     public void checkColition(){ 
-        if((target.checkearObjectivo(boom.x,boom.y)) == true){ //verifica colision horizontal
+        if((target.checkearObjectivo(boom.getx(),boom.gety())) == true){ //verifica colision horizontal
             this.stopGame();
         }
     }
@@ -153,15 +153,15 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(mState == true){
-            if(boom != null && boom.y >= 400*escala/40){
+            if(boom != null && boom.gety() >= 400*escala/40){
                 mState = false;
             }else {
-                boom.y= boom.y+1;
+                boom.sety(boom.gety()+1);
                 this.checkColition();
                 xt = xt + vt;
                 xp = xp + vp;
-                if(boom.checkearObjectivo((float)(target.x*escala/40)+target.radio, (float)target.y+target.radio)){
-                    boom.girar((float)(target.x*escala/40)+target.radio, (float)target.y+target.radio);
+                if(boom.checkearObjectivo((float)(target.getx()*escala/40)+target.getradio(), (float)target.gety()+target.getradio())){
+                    boom.girar((float)(target.getx()*escala/40)+target.getradio(), (float)target.gety()+target.getradio());
                 }
                 boom.mover();  
             }

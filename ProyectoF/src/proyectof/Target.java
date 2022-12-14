@@ -10,11 +10,11 @@ import javax.swing.JPanel;
  */
 public class Target extends JPanel{
     /** int que almacena la posicion horizontal de la clase */
-    int x;
+    private int x;
     /** int que almacena la posicion vertical de la clase*/
-    int y;    
-    int angulo;
-    float radio;
+    private int y;    
+    private int angulo;
+    private float radio;
     private int escala;
     /**Metodo constructor, asigna las coordenadas iniciales al objeto 
      * @param x posicion inicial horizontal de target
@@ -28,16 +28,10 @@ public class Target extends JPanel{
         radio = (20f)*escala/40;
     }
     
-    public int getx(){
-        return x;
-    }
-    public int gety(){
-        return y;
-    }
-    
-    public int getescala(){
-        return escala;
-    }
+    public int getx(){return x;}
+    public int gety(){return y;}
+    public int getescala(){return escala;}
+    public float getradio(){return radio;}
     /**Metodo que cambia la posicion de target
      * @param x1 nueva posicion en el eje horizontal
      * @param y1 nueva posicion en el eje vertical

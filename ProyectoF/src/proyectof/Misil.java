@@ -14,21 +14,21 @@ import javax.swing.JPanel;
 public class Misil {
     
     /**Floats que almacenan la posicion en horizontal y vertical del misil */
-    float x, y;
+    private float x, y;
     /** Float que almacena el angulo en que se mueve el misil, en sentido horario*/
-    float angulo;
+    private float angulo;
     private int escala;
     /** Float que almacena el radio de deteccion de objetos del misil*/
-    float radio;
+    private float radio;
     /** Float que almacena la velocidad de giro del misil*/
-    float velAngular;
+    private float velAngular;
     /** Float que almacena la velocidad de movimiento del misil */
 
     /** Float que almacena la escala del tamaño del misil*/
 
-    float velocidad;
+    private float velocidad;
     /** Float que la escala del tamaño del misil*/
-    float t;
+    private float t;
 
     
     /** Metodo constructor de la clase
@@ -50,6 +50,15 @@ public class Misil {
      * @param y coordenada en eje vertical del punto a analizar
      * @return true si el punto se encuentra dentro del radio de deteccion, false en caso contrario
      */
+    public void setangulo(float angulo){this.angulo = angulo;}
+    public void setx(float x){this.x = x;}
+    public void sety(float y){this.y = y;}
+    public float getangulo(){return angulo;}
+    public float getradio(){return radio;}
+    public float getvelAngular(){return velAngular;}
+    public float getvelocidad(){return velocidad;}
+    public float getx(){return x;}
+    public float gety(){return y;}
     public void changexy(int x1, int y1){
         x = x1;
         y= y1;
