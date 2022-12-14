@@ -17,8 +17,6 @@ public class Misil extends JPanel{
     private float x, y;
     /** Float que almacena el angulo en que se mueve el misil, en sentido horario*/
     private float angulo;
-    /**int para almacenar la escala del Misil respecto a la ventana*/
-    private int escala;
     /** Float que almacena el radio de deteccion de objetos del misil*/
     private float radio;
     /** Float que almacena la velocidad de giro del misil*/
@@ -27,6 +25,8 @@ public class Misil extends JPanel{
     private float velocidad;
     /** Float que la escala del tamaño del misil*/
     private float t;
+    /**int para almacenar la escala del Misil respecto a la ventana*/
+    private int escala;
 
     /** Metodo constructor de la clase
      * @param x posicion inicial horizontal del misil

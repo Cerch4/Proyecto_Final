@@ -51,7 +51,8 @@ public class FrameP extends JFrame{
         evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(SaveVT);evento_CambDireccion(ChangeDi);evento_CambDireccion(ChangeTD);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);evento_Resize(ChangeSize);
         this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);this.add(ChangeTD);this.add(ChangeSize);this.add(VTT);this.add(VT);this.add(SaveVT);
     }
-    /**Metodo de evento para reajustar el tamañan de la pantalla*/
+    /**Metodo de evento para reajustar el tamañan de la pantalla
+     *@param act JButton al cual se le aplicara el evento*/
     public void evento_Resize(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
@@ -62,7 +63,8 @@ public class FrameP extends JFrame{
             }
         });
     }
-    /**Metodo de evento para Iniciar, Resetear y Detener la Animacion*/
+    /**Metodo de evento para Iniciar, Resetear y Detener la Animacion
+     *@param act JButton al cual se le aplicara el evento*/
     public void evento_StartStop(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
@@ -94,7 +96,8 @@ public class FrameP extends JFrame{
             }
         });
     }
-    /**Metodo de evento para Usar los datos ingresados en los TextField precionando sus respectivos JButton adyacentes ademas de los eventos para cambiar la direccion del avion y target siendo estos los ultimos 2 respectivamente*/
+    /**Metodo de evento para Usar los datos ingresados en los TextField precionando sus respectivos JButton adyacentes
+     *@param act JButton al cual se le aplicara el evento*/
     public void evento_Guardar(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
@@ -124,6 +127,8 @@ public class FrameP extends JFrame{
             }
         });
     }
+    /**Metodo para Cambiar la Direccion de JButton
+     *@param act JButton al cual se le aplicara el evento*/
     public void evento_CambDireccion(JButton act){
         act.addActionListener(new ActionListener() {
             @Override
