@@ -12,9 +12,9 @@ public class Target extends JPanel{
     /** int que almacena la posicion horizontal de la clase */
     private int x;
     /** int que almacena la posicion vertical de la clase*/
-    private int y;    
-    private int angulo;
+    private int y;
     private float radio;
+    /**int para almacenar la escala del target respecto a la ventana*/
     private int escala;
     /**Metodo constructor, asigna las coordenadas iniciales al objeto 
      * @param x posicion inicial horizontal de target
@@ -22,8 +22,7 @@ public class Target extends JPanel{
      */
     public Target(int x, int y){
         this.x = x;
-        this.y = y;    
-        angulo =180;
+        this.y = y;
         this.escala = Escala.getescala();
         radio = (20f)*escala/40;
     }
@@ -40,6 +39,11 @@ public class Target extends JPanel{
         x = x1;
         y= y1;
     }
+    /**Metodo que detecta si un punto esta dentro del radio del blanco
+     * @param x coordenada en eje horizontal del punto a analizar
+     * @param y coordenada en eje vertical del punto a analizar
+     * @return true si el punto se encuentra dentro del radio de deteccion, false en caso contrario
+     */
     public boolean checkearObjectivo(float x, float y) {
         Vector dist = new Vector(x - (this.x*escala/40)-radio, y - this.y-radio);
 
@@ -61,8 +65,6 @@ public class Target extends JPanel{
          g.setColor(Color.darkGray);
          g.fillRect(x*escala/40, (y+16*escala/40), (int)radio*2, 6*escala/40);
          g.fillRect((x+17)*escala/40, y, 6*escala/40, (int)radio*2);
-        //ImageIcon imagen = new ImageIcon(getClass().getResource("Target.png"));
-        //g.drawImage(imagen.getImage(), getx(), gety(), 3*getescala()/16, getescala()/4, this);
      }
     
 }

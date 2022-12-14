@@ -19,6 +19,7 @@ public class FrameP extends JFrame{
     private JTextField YP,VP;
     private JLabel YPT, VPT;
     private JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi, ChangeSize, ChangeTD;
+    /**int para almacenar la escala de esta ventana, parametro que consiste en el ancho y alto de la ventana siendo 16*escala el ancho y 12*escala el alto*/
     private int escala;
     
     FrameP(){

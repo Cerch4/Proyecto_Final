@@ -14,7 +14,7 @@ import javax.swing.*;
  * @see Target
  */
 public class MenuPanel extends JPanel implements MouseListener, ActionListener, MouseMotionListener{
-    /** Int que almacena la escala del panel */
+    /**int para almacenar la escala del panel respecto a la ventana*/
     private int escala;  
     /** Target que almacena el blanco que se usara en la simulacion*/
     private Target target;
@@ -37,7 +37,6 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     /** Vector que almacena la posicion del mouse en la pantalla*/
     private Vector posicionMouse;
     /** Metodo constructor de la clase
-     * @param escala int que asigna velocidad al blanco
      */
     public MenuPanel(){
         this.escala = Escala.getescala();
@@ -68,7 +67,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public Misil getMisil(){return boom;}
     /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
-        boom = new Misil(xp+20*escala/40,yp-15*escala/40);        
+        boom = new Misil((xp+20*escala/40),yp-(15*escala/40));        
         boom.setangulo((float) Math.toDegrees(Math.atan2(yp-15 - posicionMouse.y, xp+20 - posicionMouse.x)) - (180));
         boom.mover(); 
         mState = true;

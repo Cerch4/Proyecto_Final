@@ -18,7 +18,9 @@ public class Avion extends JPanel{
     private int x;
     /**int para almacenar la coordenada vertical del avion */
     private int y;
+    /**int para almacenar la escala del avion respecto a la ventana*/
     private int escala;
+    /**int que sirve de bandera para dibujar el avion dependiendo de su direccion */
     private int rotate;
     /** Metodo constructor, asigna los valores de la posicion inicial del avion
      * @param x posicion inicial del avion en el eje horizontal
@@ -30,17 +32,9 @@ public class Avion extends JPanel{
         this.escala = Escala.getescala();
         this.rotate = 1;
     }
-    
-    public int getx(){
-        return x;
-    }
-    public int gety(){
-        return y;
-    }
-    
-    public int getescala(){
-        return escala;
-    }
+    public int getx(){return x;}
+    public int gety(){return y;}
+    public int getescala(){return escala;}
     /**Cambia la posicion del avion
      * @param x1 nueva posicion en el eje horizontal
      * @param y1 nueva posicion en el eje vertical
@@ -48,7 +42,9 @@ public class Avion extends JPanel{
     public void changexy(int x1, int y1){
         x = x1;
         y= y1;
-    }
+    }    
+    /**Cambia la variable rotate que que determina la direccion del paint de avion
+     */
     public void rotateP(){
         rotate = rotate*-1;
     }

@@ -11,12 +11,13 @@ import javax.swing.JPanel;
  * @see Vector.java
  * @see Angular.java
  */
-public class Misil {
+public class Misil extends JPanel{
     
     /**Floats que almacenan la posicion en horizontal y vertical del misil */
     private float x, y;
     /** Float que almacena el angulo en que se mueve el misil, en sentido horario*/
     private float angulo;
+    /**int para almacenar la escala del Misil respecto a la ventana*/
     private int escala;
     /** Float que almacena el radio de deteccion de objetos del misil*/
     private float radio;
@@ -42,14 +43,10 @@ public class Misil {
         this.escala = Escala.getescala();
         this.radio = 80*escala/40;
         this.velAngular = 5f;
-        this.velocidad = 10f;
+        this.velocidad = 10f*escala/40;
         this.t = 10f*escala/40;
     }
-    /**Metodo que detecta si un punto esta en el rango de deteccion del Misil
-     * @param x coordenada en eje horizontal del punto a analizar
-     * @param y coordenada en eje vertical del punto a analizar
-     * @return true si el punto se encuentra dentro del radio de deteccion, false en caso contrario
-     */
+
     public void setangulo(float angulo){this.angulo = angulo;}
     public void setx(float x){this.x = x;}
     public void sety(float y){this.y = y;}
@@ -63,9 +60,13 @@ public class Misil {
         x = x1;
         y= y1;
     }
+    /**Metodo que detecta si un punto esta en el rango de deteccion del Misil
+     * @param x coordenada en eje horizontal del punto a analizar
+     * @param y coordenada en eje vertical del punto a analizar
+     * @return true si el punto se encuentra dentro del radio de deteccion, false en caso contrario
+     */
     public boolean checkearObjectivo(float x, float y) { 
-        Vector dist = new Vector(x - this.x - radio, y - this.y - radio);
-
+        Vector dist = new Vector(x - this.x, y - this.y);
         // si el objetivo esta fuera del rango radial, descartar
         float mag = dist.magnitud();
         if (mag > radio) {
@@ -73,17 +74,6 @@ public class Misil {
         }else{
             return true;
         }
-        /*
-        Vector frente = new Vector((float) Math.cos(Math.toRadians(angulo)), (float) Math.sin(Math.toRadians(angulo)));
-
-        dist.normalizar();
-        frente.normalizar();
-
-        // si el objetivo esta frente al misil, entonces retornar verdadero
-        if(Vector.dot(dist, frente) > 0f){
-            return true;
-        } // sino, descartar
-        else return false;*/
     }
     /**Metodo que gira el misil en la direccion de un punto determinado en base a la diferencia de angulo entre el misil y el punto, y la velocidad angular  
      * @param x coordenada en eje horizontal del punto al que se desea girar
