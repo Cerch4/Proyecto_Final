@@ -126,10 +126,10 @@ public class Misil extends JPanel{
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.drawOval((int) (x - radio), (int) (y - radio), (int) radio * 2, (int) radio * 2);
+        g.drawOval((int) (x - radio+20), (int) (y - radio+20), (int) (radio-20) * 2, (int) (radio-20) * 2);
 
         Vector linea = new Vector((float) Math.cos(Math.toRadians(angulo + 90)), (float) Math.sin(Math.toRadians(angulo + 90)));
-        linea.escalar(radio);
+        linea.escalar(radio-20);
 
         g.drawLine((int) (x + linea.x), (int) (y + linea.y), (int) (x - linea.x), (int) (y - linea.y));
         

@@ -1,5 +1,5 @@
 package proyectof;
-/**Clase Escala Singleton-Proxy que sirve como almacenamiento y distribucion del a Varible escala a Todas las demas clases*/
+/**Clase Escala Singleton-Holder que sirve como almacenamiento y distribucion del a Varible escala a Todas las demas clases*/
 public class Escala {
         private static Escala instancia = new Escala();
         private Escala(){}

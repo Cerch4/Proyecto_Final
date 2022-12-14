@@ -39,7 +39,14 @@ public class MPanel extends JPanel implements MouseListener, ActionListener, Mou
     /** Metodo constructor de la clase MPanel*/
     public MPanel(){
         this.escala = Escala.getescala();
-        xt = 0;yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vt = 3;vp = 0;
+        yt = 295*escala/40;xp = 30*escala/40;yp = 40*escala/40;vp = 0;
+        int temp = (int) (Math.random() * 10 - 5);
+        if(temp<0){
+            xt = 599;
+        }else{
+            xt = 0;
+        }
+        vt = temp;
         mState=false;
         target = new Target(xt,yt);plane = new Avion(xp, yp);
         this.setBounds(0, 0, 16*escala, 9*escala);
