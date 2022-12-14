@@ -50,7 +50,11 @@ public class Misil {
      * @param y coordenada en eje vertical del punto a analizar
      * @return true si el punto se encuentra dentro del radio de deteccion, false en caso contrario
      */
-    public boolean checkearObjectivo(float x, float y) {
+    public void changexy(int x1, int y1){
+        x = x1;
+        y= y1;
+    }
+    public boolean checkearObjectivo(float x, float y) { 
         Vector dist = new Vector(x - this.x - radio, y - this.y - radio);
 
         // si el objetivo esta fuera del rango radial, descartar

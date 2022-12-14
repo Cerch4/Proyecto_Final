@@ -53,14 +53,19 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
         timer = new Timer(20, (ActionListener) this);
         posicionMouse = new Vector(0,0);
     }
+    
     public void setvp(int vp){this.vp = vp;}
     public void setyp(int yp){this.yp = yp;}
     public void setxp(int xp){this.xp = xp;}
     public void setxt(int xt){this.xt = xt;}
+    public void setvt(int vt){this.vt = vt;}
+    public void rotateP(){plane.rotateP();}
     public int getyp(){return yp;}
     public int getvp(){return vp;}
     public int getxp(){return xp;}
     public int getxt(){return xt;}
+    public int getvt(){return vt;}
+    public Misil getMisil(){return boom;}
     /** Metodo que lanza el misil, lo lansa desde la parte inferior del avion, cambia el valor de mState a True*/
     public void misilLaunch(){
         boom = new Misil(xp+20*escala/40,yp-15*escala/40);        

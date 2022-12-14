@@ -15,10 +15,10 @@ import javax.swing.*;
  * * @author Cesar
  */
 public class FrameP extends JFrame{
-    MenuPanel panel;
-    JTextField YP,VP;
-    JLabel YPT, VPT;
-    JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi, ChangeSize;
+    private MenuPanel panel;
+    private JTextField YP,VP;
+    private JLabel YPT, VPT;
+    private JButton Start, Reset, Stop, SaveYP, SaveVP, ChangeDi, ChangeSize, ChangeTD;
     private int escala;
     
     FrameP(){
@@ -65,13 +65,14 @@ public class FrameP extends JFrame{
         VP = new JTextField();VP.setBounds(130*escala/40,10*escala, 120*escala/40,15*escala/40);
         SaveYP = new JButton("Guardar");SaveYP.setBounds(250*escala/40, 19*escala/2, 80*escala/40,15*escala/40);
         SaveVP = new JButton("Guardar");SaveVP.setBounds(250*escala/40, 10*escala, 80*escala/40,15*escala/40);
-        ChangeDi = new JButton("Cambiar Direccion");ChangeDi.setBounds(130*escala/40, 21*escala/2, 200*escala/40,15*escala/40);
-        ChangeSize = new JButton("Resize");ChangeSize.setBounds(10*escala/40,21*escala/2, 100*escala/40,15*escala/40);
+        ChangeDi = new JButton("Cambiar Direccion Avion");ChangeDi.setBounds(5*escala/40, 21*escala/2, 173*escala/40,15*escala/40);
+        ChangeTD = new JButton("Cambiar Direccion Target");ChangeTD.setBounds(178*escala/40, 21*escala/2, 179*escala/40,15*escala/40);
+        ChangeSize = new JButton("Resize");ChangeSize.setBounds(10*escala/40, 9*escala, 80*escala/40,15*escala/40);
         Start = new JButton("Start");Start.setBounds(360*escala/40, 19*escala/2, 80*escala/40,15*escala/40);
         Reset = new JButton("Reset");Reset.setBounds(360*escala/40, 10*escala, 80*escala/40,15*escala/40);
         Stop = new JButton("Stop");Stop.setBounds(360*escala/40, 21*escala/2, 80*escala/40,15*escala/40);
-        evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);evento_Resize(ChangeSize);
-        this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);this.add(ChangeSize);
+        evento_Guardar(SaveYP);evento_Guardar(SaveVP);evento_Guardar(ChangeDi);evento_Guardar(ChangeTD);evento_StartStop(Start);evento_StartStop(Stop);evento_StartStop(Reset);evento_Resize(ChangeSize);
+        this.add(YPT);this.add(VPT);this.add(YP);this.add(VP);this.add(SaveYP);this.add(SaveVP);this.add(ChangeDi);this.add(Start);this.add(Stop);this.add(Reset);this.add(ChangeTD);this.add(ChangeSize);
     }
     public void evento_Resize(JButton act){
         act.addActionListener(new ActionListener() {
@@ -95,6 +96,7 @@ public class FrameP extends JFrame{
                     panel.setyp(40*escala/40);
                     panel.setxp(30*escala/40);
                     panel.setxt(0);
+                    panel.getMisil().changexy(17*escala,13*escala);
                     panel.stopGame();
                 }
                 if (act.getBounds().y == 21*escala/2) {
@@ -109,20 +111,24 @@ public class FrameP extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (act.getBounds().y == 19*escala/2) {//agregar limitantes osea si es menor a 40 no dejar y asi
                     try{
-                        panel.setyp(Integer.parseInt(YP.getText()));
+                        panel.setyp(Integer.parseInt(YP.getText())*escala/40);
                     }catch(NumberFormatException b){
                         JOptionPane.showMessageDialog(null, "No se a Introducido un valor Valido");
                     }
                 }
                 if (act.getBounds().y == 10*escala) {
                     try{
-                        panel.setvp(Integer.parseInt(VP.getText()));
+                        panel.setvp(Integer.parseInt(VP.getText())*escala/40);
                     }catch(NumberFormatException b){
                         JOptionPane.showMessageDialog(null, "No se a Introducido un valor Valido");
                     }
                 }
-                if (act.getBounds().y == 21*escala/2) {
+                if (act.getBounds().y == 21*escala/2&&act.getBounds().x == 5*escala/40) {
                     panel.setvp(panel.getvp()*-1);
+                    panel.rotateP();
+                }
+                if (act.getBounds().y == 21*escala/2&&act.getBounds().x == 178*escala/40) {
+                    panel.setvt(panel.getvt()*-1);
                 }
             }
         });
