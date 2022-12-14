@@ -80,7 +80,7 @@ public class MenuPanel extends JPanel implements MouseListener, ActionListener, 
     public void stopGame(){
         timer.stop();
     }
-    /** Metodo que evalua la posicion del misil respecto al blanco, en casi de que esten en contacto detiene la simulacion*/
+    /** Metodo que evalua la posicion del misil respecto al blanco, en caso de que esten en contacto detiene la simulacion*/
     public void checkColition(){ 
         if((target.checkearObjectivo(boom.getx(),boom.gety())) == true){ //verifica colision horizontal
             this.stopGame();
