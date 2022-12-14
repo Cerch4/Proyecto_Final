@@ -5,19 +5,21 @@
 package proyectof;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static proyectof.Angular.generaPunto;
 
 /**
  *
  * @author Cesar
  */
 public class TargetTest {
-    
+    private Target bullseye;
     public TargetTest() {
     }
     
@@ -31,6 +33,8 @@ public class TargetTest {
     
     @Before
     public void setUp() {
+        Escala.setescala(40);
+        bullseye = new Target(10,300);
     }
     
     @After
@@ -44,11 +48,9 @@ public class TargetTest {
     public void testGetx() {
         System.out.println("getx");
         Target instance = null;
-        int expResult = 0;
-        int result = instance.getx();
+        int expResult = 10;
+        int result = bullseye.getx();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,11 +60,9 @@ public class TargetTest {
     public void testGety() {
         System.out.println("gety");
         Target instance = null;
-        int expResult = 0;
-        int result = instance.gety();
+        int expResult = 300;
+        int result = bullseye.gety();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -71,12 +71,11 @@ public class TargetTest {
     @Test
     public void testGetescala() {
         System.out.println("getescala");
-        Target instance = null;
-        int expResult = 0;
-        int result = instance.getescala();
+
+        int expResult = Escala.getescala();;
+        int result = bullseye.getescala();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -87,10 +86,10 @@ public class TargetTest {
         System.out.println("changexy");
         int x1 = 0;
         int y1 = 0;
-        Target instance = null;
-        instance.changexy(x1, y1);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        bullseye.changexy(x1, y1);
+        assertEquals(x1, bullseye.getx());
+        assertEquals(y1, bullseye.gety());
     }
 
     /**
@@ -99,27 +98,16 @@ public class TargetTest {
     @Test
     public void testCheckearObjectivo() {
         System.out.println("checkearObjectivo");
-        float x = 0.0F;
-        float y = 0.0F;
-        Target instance = null;
-        boolean expResult = false;
-        boolean result = instance.checkearObjectivo(x, y);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("checkearObjectivo");
+        Point center = new Point(bullseye.x,bullseye.y);
+        Point test = generaPunto(center, bullseye.radio, 0);
+        Point test2 = generaPunto(center,bullseye.radio+1, 30);
+        Misil instance = null;
+        boolean t1 = bullseye.checkearObjectivo(test.x, test.y);
+        boolean t2 = bullseye.checkearObjectivo(test2.x, test2.y);
+        boolean expResult_tooClose = true;
+        boolean expResult_tooFar = false;
+        assertEquals(expResult_tooClose, t1);
+        assertEquals(expResult_tooFar, t2);
     }
-
-    /**
-     * Test of paint method, of class Target.
-     */
-    @Test
-    public void testPaint() {
-        System.out.println("paint");
-        Graphics g = null;
-        Target instance = null;
-        instance.paint(g);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
